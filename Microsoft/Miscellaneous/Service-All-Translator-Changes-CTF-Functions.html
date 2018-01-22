@@ -1,0 +1,755 @@
+<!-- %%[
+
+SET @WebTrends = Concat("WT.mc_id=azurebg_email_Trans_", emailName_)  
+/* DO NOT CHANGE THIS LINE */
+
+
+/*****************************************
+*Set Service Notice Email type by defining @NoticeType as:
+*Emergency
+*ActionRequired
+*ActionRecommended
+*General
+*Informational
+*General, Informational, blank or anything else will render the blue bg and the cloud
+******************************************/
+
+SET @NoticeType = "ActionRecommended" /* SET THIS USING ONE OF THE VARIABLES ABOVE */
+
+
+IF @NoticeType == "Emergency" THEN
+	SET @HeaderBG = "#e81123"
+	SET @HeaderIMG = "http://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33601_AzureTransTemplate_SN_Triangle.png"
+
+ELSEIF  @NoticeType == "ActionRequired" THEN
+	SET @HeaderBG = "#ffb900"
+	SET @HeaderIMG = "http://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33601_AzureTransTemplate_SN_Triangle.png"
+
+ELSEIF  @NoticeType == "ActionRecommended" THEN
+	SET @HeaderBG = "#ffb900"
+	SET @HeaderIMG = "http://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33601_AzureTransTemplate_SN_Cloud.png"
+
+ELSE
+	SET @HeaderBG = "#0078d7"
+	SET @HeaderIMG = "http://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33601_AzureTransTemplate_SN_Cloud.png"
+ENDIF
+
+/*****************************************/
+
+
+IF IndexOf(Language,"de") THEN
+	SET @Lang = "de-de"
+ELSEIF IndexOf(Language,"el") THEN
+	SET @Lang = "el-gr"
+ELSEIF IndexOf(Language,"en") THEN
+	IF Language == "en-ca" THEN
+		SET @Lang = "en-ca"
+	ELSE
+		SET @Lang = "en-us"
+	ENDIF
+ELSEIF IndexOf(Language,"es") THEN
+	SET @Lang = "es-es"
+ELSEIF IndexOf(Language,"fr") THEN
+	IF Language == "fr-ca" THEN
+		SET @Lang = "fr-ca"
+	ELSE
+		SET @Lang = "fr-fr"
+	ENDIF
+ELSEIF IndexOf(Language,"it") THEN
+	SET @Lang = "it-it"
+ELSEIF IndexOf(Language,"nl") THEN
+	SET @Lang = "nl-nl"
+ELSEIF IndexOf(Language,"ru") THEN
+	SET @Lang = "ru-ru"
+ELSEIF Language == "zh-hk" THEN
+	SET @Lang = "zh-hk"
+ELSEIF Language == "zh-tw" THEN
+	SET @Lang = "zh-tw"
+ELSEIF Language == "zh-cn" THEN
+	SET @Lang = "zh-cn"
+ELSEIF Language == "zh-sg" THEN
+	SET @Lang = "zh-sg"
+ELSE
+	SET @Lang = Trim(Language)
+ENDIF
+
+IF @Lang == "ja-jp" THEN
+
+	SET @Preheader1 = "この電子メールが正しく表示されない場合は、"
+	SET @Preheader2 = "Web ページとして表示してください"
+	SET @Preheader3 = "。"
+
+	SET @Subject = "推奨対応: GDPR に基づく Microsoft Translator Text API および Web Widget の変更"
+
+	SET @Auto_Preview = "2月1日に、Text API の Collaborative Translation 機能が読み取り専用になります。"
+
+	SET @HeroHeadlineA = "2018年5月に、ヨーロッパのプライバシー法の 1 つである"
+	SET @HeroHeadlineB = "一般データ保護規則 (GDPR)"
+	SET @HeroHeadlineB_Alias = "General Data Protection Regulation (GDPR)"
+	SET @HeroHeadlineC = " (英語)が発効します。それにより、欧州連合 (EU) 内の人に商品やサービスを提供したり、EU 居住者に関するデータを収集して分析したりする企業、行政機関、非営利団体、およびその他の組織に対して新しい規則が適用されます。GDPR はお客様の居住地に関係なく適用されます。Microsoft Translator が GDPR を完全に遵守するように、2018年2月1日に、Microsoft Translator Text API と Translator Web Widget の両方において Collaborative Translation Framework の機能が読み取り専用になります。"
+	SET @urlHeroHeadlineB = Concat("http://ec.europa.eu/justice/data-protection/reform/index_en.htm?", @WebTrends)
+
+
+	/* STANDARD: A Paragraph with no title. */
+	SET @Body1A = "Translator Text API をサブスクライブされているため、この電子メールをお送りしています。
+	<br><br>
+	"
+	SET @Body1B = "Microsoft Translator"
+	SET @Body1B_Alias = "Microsoft Translator"
+	SET @Body1C = " (英語)および "
+	SET @Body1D = "Microsoft Cognitive Services"
+	SET @Body1D_Alias = "Microsoft Cognitive Services"
+	SET @Body1E = " がデータ保護義務を十分に果たすよう全力で取り組んでおり、そのために Microsoft Translator に変更を加える必要があります。
+	<br><br>
+	<strong>Microsoft Translator Text API の変更</strong>
+	<br>
+	<strong>AddTranslation</strong> および <strong>AddTranslationArray</strong> 関数を使用すると、Collaborative Translation Framework を介した修正が有効になります。2017年1月31日以降、これらの 2 つの関数が新しい文章の送信を受け付けなくなり、エラー メッセージが返されます。これらの関数は提供がまもなく終了し、代わりに置き換えられる関数もありません。
+	<br><br>
+	<strong>Microsoft Translator Web Widget の変更</strong>
+	<br>
+	Translator Web Widget は引き続き動作しますが、2017年1月31日以降、修正を提供するオプションがなくなります。
+	<br><br>
+	<strong>推奨対応</strong>
+	<br><br>
+	Translator Text API:"
+	SET @urlBody1B = Concat("http://www.microsoft.com/translator?", @WebTrends)
+	SET @urlBody1D = Concat("https://azure.microsoft.com/ja-jp/services/cognitive-services?", @WebTrends)
+
+
+	/* LIST 1 */
+	SET @List1Bull1A = "コードが <strong>AddTranslation</strong> または <strong>AddTranslationArray</strong> 関数を呼び出している場合、これらの呼び出しを削除してください。"
+
+	SET @List1Bull2A = "Translator Text API のその他の共同メソッドは引き続き動作し (<strong>GetTranslations/GetTranslationsArray</strong> および <strong>Translate/TranslateArray</strong>)、以前に送信したコンテンツが返されます。"
+	
+	SET @List1Bull3A = ""
+	SET @List1Bull3B = "Microsoft Translator Hub"
+	SET @List1Bull3B_Alias = "Microsoft Translator Hub"
+	SET @List1Bull3C = " および Translator Hub API を翻訳をカスタマイズするために使用します。Translator Hub のドキュメント処理は完全に GDPR に準拠しています。"
+	SET @urlList1Bull3B = Concat("https://www.microsoft.com/ja-jp/translator/hub.aspx?", @WebTrends)
+
+
+	/* STANDARD: A Paragraph with no title. */
+	SET @Body2A = "Translator Web Widget:"
+
+
+	/* LIST 2 */
+	SET @List2Bull1A = "翻訳したコンテンツをウィジェットを使用せずに直接公開します。直接公開には次のようなメリットがあります。"
+
+		/* SUBLIST 1 */
+		SET @SubList1Bull1A = "検索エンジンによってインデックス化される"
+		SET @SubList1Bull2A = "元の意図したレイアウトが保持される"
+		SET @SubList1Bull3A = "レスポンシブ デザイン、画面サイズに合わせた調整、タッチ操作が行いやすい"
+		SET @SubList1Bull4A = "翻訳をトリガーするためのユーザーによる明示的な動作が不要"
+		SET @SubList1Bull5A = "Bing ブランドのフローティング ウィンドウがなくなる"
+
+	SET @List2Bull2A = ""
+	SET @List2Bull2B = "Microsoft Translator Hub"
+	SET @List2Bull2B_Alias = "Microsoft Translator Hub"
+	SET @List2Bull2C = " および Translator Hub API を翻訳をカスタマイズするために使用します。Translator Hub のドキュメント処理は完全に GDPR に準拠しています。"
+	SET @urlList2Bull2B = Concat("https://www.microsoft.com/ja-jp/translator/hub.aspx?", @WebTrends)
+	
+
+	/* STANDARD: A Paragraph with no title. */
+	SET @Body3A = "<strong>その他のリソース</strong>"
+
+
+	/* LIST 3 */
+	SET @List3Bull1A = "Cognitive Services Knowledge Base の記事 "
+	SET @List3Bull1B = "Microsoft Translator changes the Collaborative Translation functions (Microsoft Translator が Collaborative Translation 機能を変化させる)"
+	SET @List3Bull1B_Alias = "Microsoft Translator changes the Collaborative Translation functions"
+	SET @List3Bull1C = " (英語)をご確認ください。"
+	SET @urlList3Bull1B = Concat("http://www.aka.ms/TranslatorCTFArticle?", @WebTrends)
+
+	SET @List3Bull2A = "サポートや他の更新情報については、"
+	SET @List3Bull2B = "Cognitive Services UserVoice フォーラム"
+	SET @List3Bull2B_Alias = "Cognitive Services UserVoice Forum"
+	SET @List3Bull2C = " (英語)を参照してください。"
+	SET @urlList3Bull2B = Concat("http://www.aka.ms/TranslatorForum?", @WebTrends)
+
+	SET @Signature1 = "よろしくお願いいたします。"
+	SET @Signature2 = "Azure チーム"
+
+	SET @AccntHead = "アカウント情報"
+	SET @Accnt1 = TreatAsContent("<b>サブスクリプション ID:</b> %%SubscriptionGUID%%")
+	SET @Accnt2 = TreatAsContent("")
+	SET @Accnt3 = TreatAsContent("")
+	SET @Accnt4 = TreatAsContent("")
+
+	SET @Footer1A = "Microsoft の本メッセージは、お客様がご購入またはご利用になったプログラム、サービス、および製品に関する重要な内容を記載しております。Microsoft はお客様のプライバシーを尊重しております。当社の"
+	SET @Footer1B = "プライバシーに関する声明"
+	SET @Footer1C = " をお読みください。"
+	SET @urlFooter1B = "http://www.microsoft.com/privacystatement/ja-jp/OnlineServices/Default.aspx"
+
+ELSE
+
+	SET @Subject = ""
+
+ENDIF
+
+IF Length(@Subject) < 2 THEN 
+
+	SET @Preheader1 = "Having trouble viewing this email? "
+	SET @Preheader2 = "View as a webpage"
+	SET @Preheader3 = "."
+
+	SET @Subject = "Action recommended: Microsoft Translator Text API and Web Widget changes coming due to the GDPR"
+
+	SET @Auto_Preview = "On February 1, the Collaborative Translation functions in the Text API will be read-only."
+
+	SET @HeroHeadlineA = "In May 2018, a European privacy law, the "
+	SET @HeroHeadlineB = "General Data Protection Regulation (GDPR)"
+	SET @HeroHeadlineB_Alias = "General Data Protection Regulation (GDPR)"
+	SET @HeroHeadlineC = ", is due to take effect. It imposes new rules on companies, government agencies, non-profits, and other organizations that offer goods and services to people in the European Union (EU) or that collect and analyze data tied to EU residents. The GDPR applies no matter where you’re located. To prepare Microsoft Translator for full compliance with the GDPR, the functionality of the Collaborative Translation Framework will become read-only, for both the Microsoft Translator Text API and the Translator Web Widget, on February 1, 2018. "
+	SET @urlHeroHeadlineB = Concat("http://ec.europa.eu/justice/data-protection/reform/index_en.htm?", @WebTrends)
+
+
+	/* STANDARD: A Paragraph with no title. */
+	SET @Body1A = "You’re receiving this email because you’re currently subscribed to the Translator Text API. 
+	<br><br>
+	We’re committed to making "
+	SET @Body1B = "Microsoft Translator"
+	SET @Body1B_Alias = "Microsoft Translator"
+	SET @Body1C = " and "
+	SET @Body1D = "Microsoft Cognitive Services"
+	SET @Body1D_Alias = "Microsoft Cognitive Services"
+	SET @Body1E = " fully adhere to the data protection mandate, and this requires changes to Microsoft Translator.
+	<br><br>
+	<strong>Microsoft Translator Text API changes</strong>
+	<br>
+	The <strong>AddTranslation</strong> and <strong>AddTranslationArray</strong> functions let users enable corrections through the Collaborative Translation Framework. After January 31, 2017, these two functions won’t accept new sentence submissions, and you’ll receive an error message. These functions are being retired and will not be replaced. 
+	<br><br>
+	<strong>Microsoft Translator Web Widget changes</strong>
+	<br>
+	The Translator Web Widget will continue to work, but there won’t be an option to provide corrections after January 31, 2017. 
+	<br><br>
+	<strong>Recommended actions</strong>
+	<br><br>
+	Translator Text API:"
+	SET @urlBody1B = Concat("http://www.microsoft.com/translator?", @WebTrends)
+	SET @urlBody1D = Concat("https://azure.microsoft.com/en-us/services/cognitive-services?", @WebTrends)
+
+
+	/* LIST 1 */
+	SET @List1Bull1A = "If your code is calling the <strong>AddTranslation</strong> or <strong>AddTranslationArray</strong> functions, please remove those calls."
+
+	SET @List1Bull2A = "The other collaborative methods of the Translator Text API will continue to work <strong>(GetTranslations/GetTranslationsArray</strong> and <strong>Translate/TranslateArray</strong>), returning your previously submitted content."
+	
+	SET @List1Bull3A = "Use the "
+	SET @List1Bull3B = "Microsoft Translator Hub"
+	SET @List1Bull3B_Alias = "Microsoft Translator Hub"
+	SET @List1Bull3C = " and the Translator Hub API to customize translations. The document handling of the Translator Hub is fully GDPR-compliant."
+	SET @urlList1Bull3B = Concat("http://www.aka.ms/TranslatorHub?", @WebTrends)
+
+
+	/* STANDARD: A Paragraph with no title. */
+	SET @Body2A = "Translator Web Widget:"
+
+
+	/* LIST 2 */
+	SET @List2Bull1A = "Publish the translated content directly instead of using the widget. Direct publishing has several advantages:"
+
+		/* SUBLIST 1 */
+		SET @SubList1Bull1A = "Indexed by search engines"
+		SET @SubList1Bull2A = "Retains the original intended layout"
+		SET @SubList1Bull3A = "Is friendly to responsive design, scaling to screen dimensions, and to touch operation"
+		SET @SubList1Bull4A = "Doesn’t require explicit user action to trigger translations"
+		SET @SubList1Bull5A = "Removes the floating Bing-branded window"
+
+	SET @List2Bull2A = "Use the "
+	SET @List2Bull2B = "Microsoft Translator Hub"
+	SET @List2Bull2B_Alias = "Microsoft Translator Hub"
+	SET @List2Bull2C = " and the Translator Hub API to customize translations. The document handling of the Translator Hub is fully GDPR-compliant. "
+	SET @urlList2Bull2B = Concat("http://www.aka.ms/TranslatorHub?", @WebTrends)
+	
+
+	/* STANDARD: A Paragraph with no title. */
+	SET @Body3A = "<strong>Additional resources</strong>"
+
+
+	/* LIST 3 */
+	SET @List3Bull1A = "Review the Cognitive Services Knowledge Base article, "
+	SET @List3Bull1B = "Microsoft Translator changes the Collaborative Translation functions"
+	SET @List3Bull1B_Alias = "Microsoft Translator changes the Collaborative Translation functions"
+	SET @List3Bull1C = ". "
+	SET @urlList3Bull1B = Concat("http://www.aka.ms/TranslatorCTFArticle?", @WebTrends)
+
+	SET @List3Bull2A = "For support and additional updates, please visit the "
+	SET @List3Bull2B = "Cognitive Services UserVoice Forum"
+	SET @List3Bull2B_Alias = "Cognitive Services UserVoice Forum"
+	SET @List3Bull2C = ". "
+	SET @urlList3Bull2B = Concat("http://www.aka.ms/TranslatorForum?", @WebTrends)
+
+
+	SET @Signature1 = "Thank you, "
+	SET @Signature2 = "Your Azure Team"
+
+
+	SET @Survey1A = "Please help us improve our communication by telling us what you think about this email:"
+
+	SET @Survey2A = "Timely?"
+	SET @urlSurvey2Star1 = Concat("https://mssurveyinfo.azurewebsites.net/?q=1&r=1&id=",UserID,"&ename=",emailName_)
+	SET @urlSurvey2Star2 = Concat("https://mssurveyinfo.azurewebsites.net/?q=1&r=2&id=",UserID,"&ename=",emailName_)
+	SET @urlSurvey2Star3 = Concat("https://mssurveyinfo.azurewebsites.net/?q=1&r=3&id=",UserID,"&ename=",emailName_)
+	SET @urlSurvey2Star4 = Concat("https://mssurveyinfo.azurewebsites.net/?q=1&r=4&id=",UserID,"&ename=",emailName_)
+	SET @urlSurvey2Star5 = Concat("https://mssurveyinfo.azurewebsites.net/?q=1&r=5&id=",UserID,"&ename=",emailName_)
+
+	SET @Survey3A = "Helpful?"
+	SET @urlSurvey3Star1 = Concat("https://mssurveyinfo.azurewebsites.net/?q=2&r=1&id=",UserID,"&ename=",emailName_)
+	SET @urlSurvey3Star2 = Concat("https://mssurveyinfo.azurewebsites.net/?q=2&r=2&id=",UserID,"&ename=",emailName_)
+	SET @urlSurvey3Star3 = Concat("https://mssurveyinfo.azurewebsites.net/?q=2&r=3&id=",UserID,"&ename=",emailName_)
+	SET @urlSurvey3Star4 = Concat("https://mssurveyinfo.azurewebsites.net/?q=2&r=4&id=",UserID,"&ename=",emailName_)
+	SET @urlSurvey3Star5 = Concat("https://mssurveyinfo.azurewebsites.net/?q=2&r=5&id=",UserID,"&ename=",emailName_)
+
+
+	SET @AccntHead = "Account Information"
+	SET @Accnt1 = TreatAsContent("<b>Subscription ID:</b> %%SubscriptionGUID%%")
+	SET @Accnt2 = TreatAsContent("")
+	SET @Accnt3 = TreatAsContent("")
+	SET @Accnt4 = TreatAsContent("")
+
+	IF @Lang == "en-ca" OR @Lang == "fr-ca" THEN
+		SET @Footer1A = "This message from Microsoft is an important part of a program, service, or product that you or your company purchased or participates in. Microsoft respects your privacy. Please read our "
+		SET @Footer1B = "Privacy Statement"
+		SET @Footer1C = "."
+		SET @urlFooter1B = "http://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx"
+
+		SET @Footer2A = "This is a mandatory service communication. To set your contact preferences for other communications, visit the "
+		SET @Footer2B = "Promotional Communications Manager"
+		SET @Footer2C = "."
+	ELSE
+		SET @Footer1A = "This message from Microsoft is an important part of a program, service, or product that you or your company purchased or participates in. Microsoft respects your privacy. Please read our "
+		SET @Footer1B = "Privacy Statement"
+		SET @Footer1C = "."
+		SET @urlFooter1B = "http://www.microsoft.com/privacystatement/en-us/OnlineServices/Default.aspx"
+	ENDIF
+
+ENDIF
+
+]%% -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=600, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>%%= v(@Subject) =%%</title>
+<style>
+	* {-webkit-text-size-adjust: none}
+
+	body {margin:0; padding:0;}
+	table, table td { border-collapse:collapse; mso-table-lspace:0; mso-table-rspace:0; margin:0; padding:0; }
+
+	@media only screen and (max-width: 480px) {
+
+		*[class].wrapper {
+			width:320px!important;
+			min-width: 0 !important;
+		}
+
+		*[class].container288 {
+			width:288px!important;
+		}
+
+		/* Hide from mobile */
+		*[class*="mobileHidden"] { display:none !important; }
+
+		/* Custom */
+		*[class="fullWidth"] { width:100% !important; }
+
+		td[class="block"] { width:100% !important; display:block !important; }
+		td[class="block2"] { width:100% !important; display:block !important; border-top:none !important; padding:5px 0 20px 0 !important; }
+		td[class="block3"] { width:100% !important; display:block !important; border-bottom:none !important; padding:10px 0 !important; }
+
+		img[class="photo"] { width:100% !important; height:auto !important; }
+
+		td[class="mobileGutter"] { width: 15px !important; }
+	}
+</style>
+</head>
+<body>
+<!--<img src="http://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33601_AzureTransTemplate_Spacer.gif" width="600" height="1" style="min-width:600px;display:block;" class="mobileHidden">-->
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+	<tr>
+		<td valign="top" align="right" width="50%" style="background-color:#f5f5f5;">&nbsp;</td>
+		<td valign="top" style="background-color:#f5f5f5;">
+
+<!-- PREHEADER-->
+<table width="600" cellpadding="0" cellspacing="0" border="0" style="min-width:600px;" class="wrapper">
+	<tr>
+		<td width="600" align="right" style="background-color:#f5f5f5; color:#3f4042; font-family:'Segoe UI',Arial,sans-serif; font-size:10px; font-weight:bold; padding:24px 0 3px;">
+			%%= v(@Preheader1) =%%<a href="%%= redirectTo(view_email_url) =%%" title="%%= v(@Preheader2) =%%" alias="Preheader: View as a webpage" style="color:#3da5dd; text-decoration:none;">%%= v(@Preheader2) =%%</a>%%= v(@Preheader3) =%%
+		</td>
+	</tr>
+</table>
+<!-- /PREHEADER -->
+
+<!-- HEADER -->
+<table width="600" cellpadding="0" cellspacing="0" border="0" class="wrapper">
+	<tr>
+		<td width="1" style="background:#000000; line-height:1px; border-top:1px solid #000000; padding:20px 0;"></td>
+		<td width="25" style="background:#ffffff; border-top:1px solid #000000; padding:20px 0;" class="mobileGutter">&nbsp;</td>
+		<td width="274" align="left" valign="top" style="background:#ffffff; line-height:0px; border-top:1px solid #000000; padding:20px 0;" class="mobileHeader">
+			<img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/MS_logo_cmyk_grey_updated.png" alt="Microsoft" width="91" height="20" border="0" style="display:block;">
+		</td>
+		<td width="274" align="right" valign="top" style="background:#ffffff; line-height:0px; border-top:1px solid #000000; padding:20px 0;" class="mobileHeader">
+			<img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/Azure_logo_blue_2017.png" alt="Azure" width="72" height="21" border="0" style="display:block;">
+		</td>
+		<td width="25" style="background:#ffffff; border-top:1px solid #000000; padding:20px 0;" class="mobileGutter">&nbsp;</td>
+		<td width="1" style="background:#000000; line-height:1px; border-top:1px solid #000000; padding:20px 0;"></td>
+	</tr>
+</table>
+<!-- /HEADER -->
+
+<!-- HERO -->
+<table width="600" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" class="wrapper">
+	<tr>
+		<td width="1" style="width:1px; background:#000000; line-height:1px; border-top:3px solid #000000; border-bottom:3px solid #000000;"></td>
+		<td width="110" align="left" valign="top" style="width:110px; background:#505050; border-top:3px solid #505050; border-bottom:3px solid #505050;" class="mobileHidden">
+			<img src="%%= v(@HeaderIMG) =%%" width="110" height="93" border="0" alt="" style="display:block;"></td>
+		<td width="3" style="width:2px; background:%%= v(@HeaderBG) =%%; line-height:1px; border-top:3px solid %%= v(@HeaderBG) =%%; border-bottom:3px solid %%= v(@HeaderBG) =%%;" class="mobileHidden"></td>
+		<td width="11" style="width:12px; background:#ffffff; line-height:1px; border-top:3px solid %%= v(@HeaderBG) =%%; border-bottom:3px solid %%= v(@HeaderBG) =%%;" class="mobileGutter">&nbsp;</td>
+		<td align="left" valign="middle" style="background:#ffffff; color:#505050; font-family:'Segoe UI',Arial,sans-serif; font-size:1px; mso-line-height-rule:exactly; line-height:1px; border-top:3px solid %%= v(@HeaderBG) =%%; border-bottom:3px solid %%= v(@HeaderBG) =%%;">
+			<table width="449" cellpadding="0" cellspacing="0" border="0" style="width:449px;" class="fullWidth">
+				<tr>
+					<td style="background:#ffffff; color:#505050; font-family:'Segoe UI',Arial,sans-serif; font-size:17px; mso-line-height-rule:exactly; line-height:26px; padding:20px 0;">
+						%%= v(@HeroHeadlineA) =%%<a href="%%= redirectTo(@urlHeroHeadlineB) =%%" title="%%= v(@HeroHeadlineB) =%%" alias="Body: %%= v(@HeroHeadlineB_Alias) =%%" style="color:#3da5dd; text-decoration:none;">%%= v(@HeroHeadlineB) =%%</a>%%= v(@HeroHeadlineC) =%%
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td width="22" style="width:23px; background:#ffffff; line-height:1px; border-top:3px solid %%= v(@HeaderBG) =%%; border-bottom:3px solid %%= v(@HeaderBG) =%%;" class="mobileGutter">&nbsp;</td>
+		<td width="3" style="width:2px; background:%%= v(@HeaderBG) =%%; line-height:1px; border-top:3px solid %%= v(@HeaderBG) =%%; border-bottom:3px solid %%= v(@HeaderBG) =%%;" class="mobileHidden"></td>
+		<td width="1" style="width:1px; background:#000000; line-height:1px; border-top:3px solid #000000; border-bottom:3px solid #000000;"></td>
+	</tr>
+</table>
+<!-- /HERO -->
+
+<!-- MAIN BODY -->
+<table width="600" cellpadding="0" cellspacing="0" border="0" class="wrapper">
+	<tr>
+		<td width="1" style="background:#000000; line-height:1px;"></td>
+		<td width="124" style="background:#ffffff; line-height:1px; border-top:1px solid #dfdfdf;" class="mobileGutter">&nbsp;</td>
+		<td width="449" align="left" valign="top" style="background:#ffffff; padding:20px 0; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px; border-top:1px solid #dfdfdf;" class="container288">
+
+
+			<!-- STANDARD -->
+			%%[IF NOT EMPTY(@Body1A) OR NOT EMPTY (@Body1B) THEN]%%
+			%%= v(@Body1A) =%%<a href="%%= redirectTo(@urlBody1B) =%%" title="%%= v(@Body1B) =%%" alias="Body: %%= v(@Body1B_Alias) =%%" style="color:#3da5dd; text-decoration:none;">%%= v(@Body1B) =%%</a>%%= v(@Body1C) =%%<a href="%%= redirectTo(@urlBody1D) =%%" title="%%= v(@Body1D) =%%" alias="Body: %%= v(@Body1D_Alias) =%%" style="color:#3da5dd; text-decoration:none;">%%= v(@Body1D) =%%</a>%%= v(@Body1E) =%%
+			<br>
+			%%[ENDIF]%%
+
+
+			<!-- LIST 1 -->
+			%%[IF NOT EMPTY(@List1Bull1A) OR NOT EMPTY (@List1Bull1B) THEN]%%
+			<br>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&bull;</td>
+					<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+						%%= v(@List1Bull1A) =%%
+					</td>
+				</tr>
+				<tr>
+					<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&bull;</td>
+					<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+						%%= v(@List1Bull2A) =%%
+					</td>
+				</tr>
+				<tr>
+					<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&bull;</td>
+					<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+						%%= v(@List1Bull3A) =%%<a href="%%= redirectTo(@urlList1Bull3B) =%%" title="%%= v(@List1Bull3B) =%%" alias="Body: %%= v(@List1Bull3B_Alias) =%%" style="color:#3da5dd; text-decoration:none;">%%= v(@List1Bull3B) =%%</a>%%= v(@List1Bull3C) =%%
+					</td>
+				</tr>
+			</table>
+			<br>
+			%%[ENDIF]%%
+
+
+			<!-- STANDARD -->
+			%%[IF NOT EMPTY(@Body2A) THEN]%%
+			%%= v(@Body2A) =%%
+			<br>
+			%%[ENDIF]%%
+
+
+			<!-- LIST 2 -->
+			%%[IF NOT EMPTY(@List2Bull1A) OR NOT EMPTY (@List2Bull1B) THEN]%%
+			<br>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&bull;</td>
+					<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+						%%= v(@List2Bull1A) =%%
+
+						%%[IF NOT EMPTY(@SubList1Bull1A) OR NOT EMPTY (@SubList1Bull1B) THEN]%%
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&#x25e6;</td>
+								<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+									%%= v(@SubList1Bull1A) =%%
+								</td>
+							</tr>
+							<tr>
+								<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&#x25e6;</td>
+								<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+									%%= v(@SubList1Bull2A) =%%
+								</td>
+							</tr>
+							<tr>
+								<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&#x25e6;</td>
+								<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+									%%= v(@SubList1Bull3A) =%%
+								</td>
+							</tr>
+							<tr>
+								<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&#x25e6;</td>
+								<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+									%%= v(@SubList1Bull4A) =%%
+								</td>
+							</tr>
+							<tr>
+								<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&#x25e6;</td>
+								<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+									%%= v(@SubList1Bull5A) =%%
+								</td>
+							</tr>
+						</table>
+						%%[ENDIF]%%
+					</td>
+				</tr>
+				<tr>
+					<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&bull;</td>
+					<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+						%%= v(@List2Bull2A) =%%<a href="%%= redirectTo(@urlList2Bull2B) =%%" title="%%= v(@List2Bull2B) =%%" alias="Body: %%= v(@List2Bull2B_Alias) =%%" style="color:#3da5dd; text-decoration:none;">%%= v(@List2Bull2B) =%%</a>%%= v(@List2Bull2C) =%%
+					</td>
+				</tr>
+			</table>
+			<br>
+			%%[ENDIF]%%
+
+			<!-- STANDARD -->
+			%%[IF NOT EMPTY(@Body3A) THEN]%%
+			%%= v(@Body3A) =%%
+			<br>
+			%%[ENDIF]%%
+
+			<!-- LIST 3 -->
+			%%[IF NOT EMPTY(@List3Bull1A) OR NOT EMPTY (@List3Bull1B) THEN]%%
+			<br>
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&bull;</td>
+					<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+						%%= v(@List3Bull1A) =%%<a href="%%= redirectTo(@urlList3Bull1B) =%%" title="%%= v(@List3Bull1B) =%%" alias="Body: %%= v(@List3Bull1B_Alias) =%%" style="color:#3da5dd; text-decoration:none;">%%= v(@List3Bull1B) =%%</a>%%= v(@List3Bull1C) =%%
+					</td>
+				</tr>
+				<tr>
+					<td width="15" align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&bull;</td>
+					<td align="left" valign="top" style="background:#fff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+						%%= v(@List3Bull2A) =%%<a href="%%= redirectTo(@urlList3Bull2B) =%%" title="%%= v(@List3Bull2B) =%%" alias="Body: %%= v(@List3Bull2B_Alias) =%%" style="color:#3da5dd; text-decoration:none;">%%= v(@List3Bull2B) =%%</a>%%= v(@List3Bull2C) =%%
+					</td>
+				</tr>
+			</table>
+			<br>
+			%%[ENDIF]%%
+
+
+			<br>
+			%%= v(@Signature1) =%%
+			<br><br>
+			%%= v(@Signature2) =%%
+
+			%%[IF NOT EMPTY(@Survey1A) THEN]%%
+			<br><br><br>
+			%%= v(@Survey1A) =%%
+			<br>
+			<table cellpadding="0" cellspacing="0" border="0" width="449" class="container288">
+				<tr>
+					<td align="center" valign="top">
+
+						<table cellpadding="0" cellspacing="0" border="0">
+							<tr>
+								<td valign="top" style="padding:4px 0; width: 175px;" class="block">
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td width="54" align="left" valign="top" style="width: 54px; background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												%%= v(@Survey2A) =%%
+											</td>
+											<td width="6" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&nbsp;</td>
+											<td width="18" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												<a href="%%= redirectTo(@urlSurvey2Star1) =%%" title="1" alias="Body: Timely? 1" style="color:#3da5dd; text-decoration:none;"><img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33675_icon_StarGray_Outlined.jpg" width="18" height="18" border="0" alt="1"></a>
+											</td>
+											<td width="6" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&nbsp;</td>
+											<td width="18" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												<a href="%%= redirectTo(@urlSurvey2Star2) =%%" title="2" alias="Body: Timely? 2" style="color:#3da5dd; text-decoration:none;"><img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33675_icon_StarGray_Outlined.jpg" width="18" height="18" border="0" alt="1"></a>
+											</td>
+											<td width="6" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&nbsp;</td>
+											<td width="18" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												<a href="%%= redirectTo(@urlSurvey2Star3) =%%" title="3" alias="Body: Timely? 3" style="color:#3da5dd; text-decoration:none;"><img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33675_icon_StarGray_Outlined.jpg" width="18" height="18" border="0" alt="1"></a>
+											</td>
+											<td width="6" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&nbsp;</td>
+											<td width="18" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												<a href="%%= redirectTo(@urlSurvey2Star4) =%%" title="4" alias="Body: Timely? 4" style="color:#3da5dd; text-decoration:none;"><img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33675_icon_StarGray_Outlined.jpg" width="18" height="18" border="0" alt="1"></a>
+											</td>
+											<td width="6" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&nbsp;</td>
+											<td width="18" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												<a href="%%= redirectTo(@urlSurvey2Star5) =%%" title="5" alias="Body: Timely? 5" style="color:#3da5dd; text-decoration:none;"><img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33675_icon_StarGray_Outlined.jpg" width="18" height="18" border="0" alt="1"></a>
+											</td>
+										</tr>
+									</table>
+
+								</td>
+								<td width="20" align="left" valign="top" style="padding:4px 0;" class="mobileHidden">&nbsp;</td>
+								<td align="left" valign="top" style="padding:4px 0; width: 175px;" class="block">
+
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<td width="54" align="left" valign="top" style="width: 54px; background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												%%= v(@Survey3A) =%%
+											</td>
+											<td width="6" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&nbsp;</td>
+											<td width="18" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												<a href="%%= redirectTo(@urlSurvey3Star1) =%%" title="1" alias="Body: Helpful? 1" style="color:#3da5dd; text-decoration:none;"><img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33675_icon_StarGray_Outlined.jpg" width="18" height="18" border="0" alt="1"></a>
+											</td>
+											<td width="6" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&nbsp;</td>
+											<td width="18" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												<a href="%%= redirectTo(@urlSurvey3Star2) =%%" title="2" alias="Body: Helpful? 2" style="color:#3da5dd; text-decoration:none;"><img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33675_icon_StarGray_Outlined.jpg" width="18" height="18" border="0" alt="1"></a>
+											</td>
+											<td width="6" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&nbsp;</td>
+											<td width="18" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												<a href="%%= redirectTo(@urlSurvey3Star3) =%%" title="3" alias="Body: Helpful? 3" style="color:#3da5dd; text-decoration:none;"><img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33675_icon_StarGray_Outlined.jpg" width="18" height="18" border="0" alt="1"></a>
+											</td>
+											<td width="6" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&nbsp;</td>
+											<td width="18" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												<a href="%%= redirectTo(@urlSurvey3Star4) =%%" title="4" alias="Body: Helpful? 4" style="color:#3da5dd; text-decoration:none;"><img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33675_icon_StarGray_Outlined.jpg" width="18" height="18" border="0" alt="1"></a>
+											</td>
+											<td width="6" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">&nbsp;</td>
+											<td width="18" align="left" valign="top" style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:20px;">
+												<a href="%%= redirectTo(@urlSurvey3Star5) =%%" title="5" alias="Body: Helpful? 5" style="color:#3da5dd; text-decoration:none;"><img src="https://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/2/33675_icon_StarGray_Outlined.jpg" width="18" height="18" border="0" alt="1"></a>
+											</td>
+										</tr>
+									</table>
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<br>
+			%%[ENDIF]%%
+			
+
+		</td>
+		<td width="25" style="background:#ffffff; line-height:1px; border-top:1px solid #dfdfdf;" class="mobileGutter">&nbsp;</td>
+		<td width="1" style="background:#000000; line-height:1px; "></td>
+	</tr>
+</table>
+<!-- /MAIN BODY -->
+
+<!-- ACCOUNT 
+%%[IF NOT EMPTY(@AccntHead) THEN]%%
+-->
+<table width="600" cellpadding="0" cellspacing="0" border="0" class="wrapper">
+	<tr>
+		<td width="1" style="background:#000000; line-height:1px; border-top:1px solid #000000;"></td>
+		<td width="110" style="background:#ffffff; line-height:1px; border-top:1px solid #dfdfdf;" class="mobileHidden">&nbsp;</td>
+		<td width="14" style="background:#ffffff; line-height:1px; border-top:1px solid #dfdfdf;" class="mobileGutter">&nbsp;</td>
+		<td width="449" valign="top" style="background:#ffffff; padding:20px 0; border-top:1px solid #dfdfdf;" class="container288">
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td align="left" valign="top" style="color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; mso-line-height-rule:exactly; line-height:25px; padding-bottom:15px; padding-top:10px;">
+						<span style="font-size:17px; font-weight:100;">%%= v(@AccntHead) =%%</span>
+						<br>
+						%%[IF NOT EMPTY(@Accnt1) THEN]%%
+						%%= v(@Accnt1) =%%
+						<br>
+						%%[ENDIF]%%
+						%%[IF NOT EMPTY(@Accnt2) THEN]%%
+						%%= v(@Accnt2) =%%
+						<br>
+						%%[ENDIF]%%
+						%%[IF NOT EMPTY(@Accnt3) THEN]%%
+						%%= v(@Accnt3) =%%
+						<br>
+						%%[ENDIF]%%
+						%%[IF NOT EMPTY(@Accnt4) THEN]%%
+						%%= v(@Accnt4) =%%
+						<br>
+						%%[ENDIF]%%
+					</td>
+				</tr>
+			</table>
+		</td>
+		<td width="25" style="background:#ffffff; line-height:1px; border-top:1px solid #dfdfdf;" class="mobileGutter">&nbsp;</td>
+		<td width="1" style="background:#000000; line-height:1px; border-top:1px solid #000000;"></td>
+	</tr>
+</table>
+<!--
+%%[ENDIF]%%
+/ACCOUNT -->
+
+<!-- FOOTER -->
+<table width="600" cellpadding="0" cellspacing="0" border="0" class="wrapper">
+	<tr>
+		<td width="1" style="background:#000000; line-height:1px; border-bottom:solid 1px #000000;"></td>
+		<td width="25" style="background:#505050; line-height:1px; border-bottom:solid 1px #898989;" class="mobileGutter"></td>
+		<td width="548" align="left" valign="top" style="background:#505050; color:#fffffe; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; mso-line-height-rule:exactly; line-height:18px; padding:20px 0; border-bottom:solid 1px #898989;" class="container288">
+			%%= v(@Footer1A) =%%<a href="%%= redirectTo(@urlFooter1B) =%%" title="%%= v(@Footer1B) =%%" alias="Footer: Privacy Statement" style="color:#3da5dd; text-decoration:none;">%%= v(@Footer1B) =%%</a>%%= v(@Footer1C) =%%
+			%%[IF NOT EMPTY(@Footer2A) THEN]%%
+			<!-- This is for EN-CA/FR-CA -->
+			<br><br>
+			%%= v(@Footer2A) =%%<a href="http://go.microsoft.com/fwlink/?LinkId=243191" title="%%= v(@Footer2B) =%%" alias="Footer: Promotional Communications Manager" style="color:#3da5dd; text-decoration:none;">%%= v(@Footer2B) =%%</a>%%= v(@Footer2C) =%%
+			%%[ENDIF]%%
+		</td>
+		<td width="25" style="background:#505050; line-height:1px; border-bottom:solid 1px #898989;" class="mobileGutter"></td>
+		<td width="1" style="background:#000000; line-height:1px; border-bottom:solid 1px #000000;"></td>
+	</tr>
+</table>
+<table width="600" cellpadding="0" cellspacing="0" border="0" class="wrapper">
+	<tr>
+		<td width="1" style="background:#000000; line-height:1px;"></td>
+		<td width="488" valign="top" align="left" style="background:#505050; color:#ffffff; font-family:'Segoe UI',Arial,sans-serif; font-size:11px; padding:20px 0;" class="block3">
+			<table width="488" cellpadding="0" cellspacing="0" border="0" class="fullWidth">
+				<tr>
+					<td width="25" style="background:#505050;line-height:1px;" class="mobileGutter">&nbsp;</td>
+					<td width="453" valign="top" align="left" style="background:#505050; color:#ffffff; font-family:'Segoe UI',Arial,sans-serif; font-size:11px;" class="container288">
+						%%[IF Country=="Japan" THEN]%%
+						<span style="font-size:90%;">日本マイクロソフト株式会社 〒108-0075 東京都港区港南 2-16-3 品川グランドセントラルタワー</span>
+						%%[ELSE]%%
+						%%Member_Addr%%, %%Member_City%%, %%Member_State%% %%Member_PostalCode%% %%Member_Country%%
+						%%[ENDIF]%%
+					</td>
+					<td width="10" valign="top" align="left" style="background:#505050; color:#4c4c4c;line-height:1px;" class="mobileGutter">&nbsp;</td>
+				</tr>
+			</table>
+		</td>
+		<td width="110" valign="top" align="right" style="background:#505050; color:#4c4c4c; padding:20px 0;" class="block2">
+			<table width="110" cellpadding="0" cellspacing="0" border="0" class="fullWidth">
+				<tr>
+					<td width="10" valign="top" align="left" style="background:#505050; color:#4c4c4c;line-height:1px;" class="mobileGutter">&nbsp;</td>
+					<td width="75" valign="top" align="right" style="background:#505050; color:#4c4c4c; font-family:'Segoe UI',Arial,sans-serif; font-size:11px;" class="container288">
+						<img src="http://image.email.microsoftemail.com/lib/fe621570756503797d1c/m/1/MS_Logo_white_100.png" alt="Microsoft" width="75" height="16" border="0" style="display:block;">
+					</td>
+					<td width="25" style="background:#505050; line-height:1px;" class="mobileGutter">&nbsp;</td>
+				</tr>
+			</table>
+		</td>
+		<td width="1" style="background:#000000; line-height:1px;"></td>
+	</tr>
+	<tr>
+		<td width="600" colspan="4" valign="top" align="left" style="background:#f5f5f5; color:#ffffff; font-family:'Segoe UI',Arial,sans-serif; font-size:11px;">&nbsp;</td>
+	</tr>
+</table>
+<!-- /FOOTER -->
+
+		</td>
+		<td valign="top" align="left" width="50%" style="background-color:#f5f5f5;">&nbsp;</td>
+	</tr>
+</table>
+
+<custom name="opencounter" type="tracking">
+</body>
+</html>

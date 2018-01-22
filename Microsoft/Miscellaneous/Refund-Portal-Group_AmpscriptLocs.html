@@ -1,0 +1,1869 @@
+<!-- %%[
+
+VAR @Market,@Environment,@TemplateType
+SET @TemplateType = "Template 1 RTL-CVAA"
+SET @Environment = Trim(Environment)
+SET @Market = Lowercase(Market)
+/* All markets should appear in XX-YY format, Language-Country. */
+
+/* Custom Loc Stack-do not clone */
+
+IF IndexOf(@Market,'cs') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Máte nárok na vrácení peněz od společnosti Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Zobrazit tento e-mail v prohlížeči.")
+
+SET @Header = "Máte nárok na vrácení peněz."
+
+SET @Body1A = TreatAsContent("Nedávno jsme přišli na problém s fakturací vašeho předplatného %%subtype%%. Ve vašem účtu nebyla správně použita délka dříve zakoupeného předplatného, což způsobilo naúčtování nesprávné částky.
+	<br><br>
+	Z důvodu změn ve vašich způsobech platby vám nemůžeme peníze vrátit automaticky. O vrácení peněz můžete požádat tak, že přejdete na adresu ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " a budete postupovat podle uvedených pokynů.
+<br><br>
+Abychom vám tuto nepříjemnost vynahradili, rádi bychom vám nabídli dodatečný kredit pro váš účet Microsoft. Tento kód můžete uplatnit na adrese "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Kredit můžete utratit v obchodě Microsoft Store. Kód je nutné uplatnit do 31. 12. 2018 a kredit utratit do jednoho roku od uplatnění.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Poznámka: Pokud máte v současné době předplatné %%subscriptiontype%%, bude vaše předplatné pokračovat beze změny.")
+
+SET @Signature1 = "Děkujeme vám"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF IndexOf(@Market,'da') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Du modtager en refusion fra Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Vis denne mail i din browser.")
+
+SET @Header = "Du modtager en refusion."
+
+SET @Body1A = TreatAsContent("Vi har for nylig identificeret et faktureringsproblem i forhold til dit %%subtype%%. Den abonnementstid, du tidligere har købt, blev ikke anvendt korrekt på din konto, hvilket har medført en forkert opkrævning.
+<br><br>
+På grund af ændringer i dine betalingsmetoder kan vi ikke automatisk give en refusion. Du får din refusion ved at gå til ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " og følge fremgangsmåden der.
+<br><br>
+For denne ulejlighed vil vi gerne tilbyde dig ekstra kredit til din Microsoft-konto. Du kan indløse denne kode på "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Du kan bruge din kredit i Microsoft Store. Koden skal være indløst inden den 31. december 2018, og kreditten skal være brugt inden for et år efter indløsningen.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Bemærk! Hvis du i øjeblikket er %%subscriptiontype%% abonnent, ændres dit abonnement ikke. ")
+
+SET @Signature1 = "Mange tak"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "de-at" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Sie erhalten eine Rückerstattung von Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Diese E-Mail im Browser anzeigen.")
+
+SET @Header = "Sie erhalten eine Rückerstattung."
+
+SET @Body1A = TreatAsContent("Wir haben kürzlich festgestellt, dass bei Ihrem %%subtype%%-Abonnement ein Rechnungsfehler aufgetreten ist. Der von Ihnen bereits bezahlte Abonnementzeitraum wurde für Ihr Konto nicht ordnungsgemäß vermerkt. Dies hat zu einer irrtümlichen Belastung Ihres Kontos geführt. 
+<br><br>
+Aufgrund von Änderungen bei Ihren Zahlungsmethoden können wir eine Rückerstattung nicht automatisch veranlassen. Rufen Sie zur Inanspruchnahme Ihrer Rückerstattung ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " auf, und folgen Sie den dort angezeigten Schritten.
+<br><br>
+Für die Ihnen entstandenen Unannehmlichkeiten möchten wir Ihnen eine zusätzliche Gutschrift auf Ihr Microsoft-Konto anbieten. Diesen Code können Sie unter "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(" einlösen. Ihr Guthaben können Sie im Microsoft Store ausgeben. Der Code muss bis zum 31.12.2018 eingelöst und das Guthaben muss innerhalb eines Jahres nach Einlösung ausgegeben werden.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Hinweis: Wenn Sie derzeit %%subscriptiontype%%-Abonnent sind, wird Ihr Abonnement unverändert fortgesetzt.")
+
+SET @Signature1 = "Mit freundlichen Grüßen"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF @Market == "de-ch" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Sie erhalten eine Rückerstattung von Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Diese E-Mail im Browser anzeigen.")
+
+SET @Header = "Sie erhalten eine Rückerstattung."
+
+SET @Body1A = TreatAsContent("Wir haben kürzlich festgestellt, dass bei Ihrem %%subtype%%-Abonnement ein Rechnungsfehler aufgetreten ist. Der von Ihnen bereits bezahlte Abonnementzeitraum wurde für Ihr Konto nicht ordnungsgemäß vermerkt. Dies hat zu einer irrtümlichen Belastung Ihres Kontos geführt.
+<br><br>
+Aufgrund von Änderungen bei Ihren Zahlungsmethoden können wir eine Rückerstattung nicht automatisch veranlassen. Rufen Sie zur Inanspruchnahme Ihrer Rückerstattung ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " auf, und folgen Sie den dort angezeigten Schritten.
+<br><br>
+Für die Ihnen entstandenen Unannehmlichkeiten möchten wir Ihnen eine zusätzliche Gutschrift auf Ihr Microsoft-Konto anbieten. Diesen Code können Sie unter "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(" einlösen. Ihr Guthaben können Sie im Microsoft Store ausgeben. Der Code muss bis zum 31.12.2018 eingelöst und das Guthaben muss innerhalb eines Jahres nach Einlösung ausgegeben werden.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Hinweis: Wenn Sie derzeit %%subscriptiontype%%-Abonnent sind, wird Ihr Abonnement unverändert fortgesetzt.")
+
+SET @Signature1 = "Mit freundlichen Grüßen"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF @Market == "de-de" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Sie erhalten eine Rückerstattung von Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Diese E-Mail im Browser anzeigen.")
+
+SET @Header = "Sie erhalten eine Rückerstattung."
+
+SET @Body1A = TreatAsContent("Wir haben kürzlich festgestellt, dass bei Ihrem %%subtype%%-Abonnement ein Rechnungsfehler aufgetreten ist. Der von Ihnen bereits bezahlte Abonnementzeitraum wurde für Ihr Konto nicht ordnungsgemäß vermerkt. Dies hat zu einer irrtümlichen Belastung Ihres Kontos geführt.
+<br><br>
+Aufgrund von Änderungen bei Ihren Zahlungsmethoden können wir eine Rückerstattung nicht automatisch veranlassen. Rufen Sie zur Inanspruchnahme Ihrer Rückerstattung ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " auf, und folgen Sie den dort angezeigten Schritten.
+<br><br>
+Für die Ihnen entstandenen Unannehmlichkeiten möchten wir Ihnen eine zusätzliche Gutschrift auf Ihr Microsoft-Konto anbieten. Diesen Code können Sie unter "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(" einlösen. Ihr Guthaben können Sie im Microsoft Store ausgeben. Der Code muss bis zum 31.12.2018 eingelöst und das Guthaben muss innerhalb eines Jahres nach Einlösung ausgegeben werden.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Hinweis: Wenn Sie derzeit %%subscriptiontype%%-Abonnent sind, wird Ihr Abonnement unverändert fortgesetzt.")
+
+SET @Signature1 = "Mit freundlichen Grüßen"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF IndexOf(@Market,'el') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Σας οφείλεται επιστροφή χρημάτων από την Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Προβάλετε αυτό το email στο πρόγραμμα περιήγησής σας.")
+
+SET @Header = "Σας οφείλεται επιστροφή χρημάτων."
+
+SET @Body1A = TreatAsContent("Εντοπίσαμε πρόσφατα ένα πρόβλημα χρέωσης στο %%subtype%%. Η περίοδος συνδρομής που αγοράσατε στο παρελθόν δεν προστέθηκε στο λογαριασμό σας, με αποτέλεσμα να προκύψει εσφαλμένη χρέωση. 
+<br><br>
+Λόγω αλλαγών στις μεθόδους πληρωμής σας, δεν έχουμε τη δυνατότητα να επιστρέψουμε τα χρήματα αυτόματα. Για να διεκδικήσετε την επιστροφή χρημάτων, επισκεφτείτε τη διεύθυνση ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " και ακολουθήστε τα βήματα που θα βρείτε εκεί.
+<br><br>
+Λόγω της αναστάτωσης που προκλήθηκε, σας προσφέρουμε επιπλέον πίστωση στο λογαριασμό Microsoft που διαθέτετε. Μπορείτε να εξαργυρώσετε αυτόν τον κωδικό στη διεύθυνση "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Μπορείτε να χρησιμοποιήσετε την πίστωσή σας για αγορές στο Microsoft Store. Η εξαργύρωση του κωδικού πρέπει να πραγματοποιηθεί έως τις 31/12/2018, ενώ η πίστωση πρέπει να χρησιμοποιηθεί εντός ενός έτους από την ημερομηνία εξαργύρωσης.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Σημείωση: Εάν επί του παρόντος είστε συνδρομητής %%subscriptiontype%%, δεν θα υπάρξει καμία αλλαγή στη συνδρομή σας.")
+
+SET @Signature1 = "Σας ευχαριστούμε,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+
+ELSEIF @Market == "en-ae" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had. 
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 12/31/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF @Market == "en-au" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 31/12/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF @Market == "en-ca" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had. 
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 12/31/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged. ")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF @Market == "en-gb" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 31/12/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged. ")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "en-hk" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 12/31/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "en-ie" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 31/12/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "en-in" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 31/12/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "en-nz" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 31/12/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "en-sa" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 12/31/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "en-sg" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 12/31/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "en-sk" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 12/31/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "en-za" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+<br><br>
+Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " and follow the steps there.
+<br><br>
+For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 31/12/2018 and the credit spent within one year of redemption.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+SET @Signature1 = "Thank you,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF @Market == "en-us" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+SET @Header = "You are due a refund."
+
+	SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+		<br><br>
+		Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+	SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+	SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+	SET @Body1C = " and follow the steps there.
+	<br><br>
+	For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+	SET @Body1D = "www.microsoft.com/redeem"
+	SET @Body1D_Alias = "www.microsoft.com/redeem"
+	SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 12/31/2018 and the credit spent within one year of redemption.
+	<br><br>
+	%%GiftCode%%")
+	SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+	SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+	SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+	SET @Signature1 = "Thank you, "
+	SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF @Market == "es-ar" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Tiene pendiente un reembolso por parte de Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Consulta este correo electrónico en el explorador.")
+
+SET @Header = "Tiene pendiente un reembolso."
+
+SET @Body1A = TreatAsContent("Recientemente identificamos un problema de facturación con su %%subtype%%. El tiempo de suscripción que compró anteriormente no se aplicó correctamente a su cuenta, lo que ocasionó un cargo incorrecto. 
+<br><br>
+Debido a cambios en sus métodos de pago, no podemos proporcionarle un reembolso automáticamente. Para reclamar su reembolso, visite ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " y siga los pasos que se indican.
+<br><br>
+Debido a este inconveniente, deseamos ofrecerle un crédito adicional para su cuenta de Microsoft. Puede canjear este código en "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Puede gastar su crédito en Microsoft Store. El código debe canjearse antes del 31/12/2018 y el crédito debe gastarse en el plazo de un año desde la redención.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Nota: Si actualmente es suscriptor de %%subscriptiontype%%, su suscripción se mantendrá sin cambios.")
+
+SET @Signature1 = "Gracias,"
+SET @Signature2 = "Microsoft"
+
+
+ELSEIF @Market == "es-cl" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Tiene pendiente un reembolso por parte de Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Consulta este correo electrónico en el explorador.")
+
+SET @Header = "Tiene pendiente un reembolso."
+
+SET @Body1A = TreatAsContent("Recientemente identificamos un problema de facturación con su %%subtype%%. El tiempo de suscripción que compró anteriormente no se aplicó correctamente a su cuenta, lo que ocasionó un cargo incorrecto.
+<br><br>
+Debido a cambios en sus métodos de pago, no podemos proporcionarle un reembolso automáticamente. Para reclamar su reembolso, visite ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " y siga los pasos que se indican allí.
+<br><br>
+Debido a este inconveniente, deseamos ofrecerle un crédito adicional para su cuenta de Microsoft. Puede canjear este código en "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Puede gastar su crédito en Microsoft Store. El código debe canjearse antes del 31/12/2018 y el crédito debe gastarse en el plazo de un año desde la redención.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Nota: Si actualmente es suscriptor de %%subscriptiontype%%, su suscripción se mantendrá sin cambios.")
+
+SET @Signature1 = "Gracias,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "es-co" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Tiene pendiente un reembolso por parte de Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Consulta este correo electrónico en el explorador.")
+
+SET @Header = "Tiene pendiente un reembolso."
+
+SET @Body1A = TreatAsContent("Recientemente identificamos un problema de facturación con su %%subtype%%. El tiempo de suscripción que compró anteriormente no se aplicó correctamente a su cuenta, lo que ocasionó un cargo incorrecto.
+<br><br>
+Debido a cambios en sus métodos de pago, no podemos proporcionarle un reembolso automáticamente. Para reclamar su reembolso, visite ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " y siga los pasos que se indican allí.
+<br><br>
+Debido a este inconveniente, deseamos ofrecerle un crédito adicional para su cuenta de Microsoft. Puede canjear este código en "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Puede gastar su crédito en Microsoft Store. El código debe canjearse antes del 31/12/2018 y el crédito debe gastarse en el plazo de un año desde la redención.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Nota: Si actualmente es suscriptor de %%subscriptiontype%%, su suscripción se mantendrá sin cambios.")
+
+SET @Signature1 = "Gracias,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF @Market == "es-es" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Debe recibir un reembolso de Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Consulta este correo electrónico en el explorador.")
+
+SET @Header = "Debe recibir un reembolso."
+
+SET @Body1A = TreatAsContent("Hemos identificado recientemente un problema de facturación con su %%subtype%%. El tiempo de suscripción que adquirió no se aplicó correctamente a su cuenta, lo cual dio lugar a un cobro incorrecto.
+<br><br>
+Debido a los cambios que se han realizado en sus métodos de pago no podemos reembolsarle el dinero automáticamente. Para reclamar el reembolso, consulte ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " y siga los pasos que se le indican.
+<br><br>
+A causa de las molestias ocasionadas, nos gustaría proporcionarle crédito adicional para su cuenta de Microsoft. Puede canjear este código en "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Puede gastar su crédito en Microsoft Store. El código debe canjearse antes del 31/12/2018 y podrá gastar el crédito en un año a partir de la fecha de canje.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Nota: Si actualmente está suscrito a %%subscriptiontype%%, su suscripción no sufrirá cambio alguno.")
+
+SET @Signature1 = "Gracias,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+
+ELSEIF @Market == "es-mx" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Tiene pendiente un reembolso por parte de Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Consulta este correo electrónico en el explorador.")
+
+SET @Header = "Tiene pendiente un reembolso."
+
+SET @Body1A = TreatAsContent("Recientemente identificamos un problema de facturación con su %%subtype%%. El tiempo de suscripción que compró anteriormente no se aplicó correctamente a su cuenta, lo que ocasionó un cargo incorrecto.
+<br><br>
+Debido a cambios en sus métodos de pago, no podemos proporcionarle un reembolso automáticamente. Para reclamar su reembolso, visite ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " y siga los pasos que se indican allí.
+<br><br>
+Debido a este inconveniente, deseamos ofrecerle un crédito adicional para su cuenta de Microsoft. Puede canjear este código en "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Puede gastar su crédito en Microsoft Store. El código debe canjearse antes del 31/12/2018 y el crédito debe gastarse en el plazo de un año desde la redención.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Nota: Si actualmente es suscriptor de %%subscriptiontype%%, su suscripción se mantendrá sin cambios.")
+
+SET @Signature1 = "Gracias,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+
+ELSEIF IndexOf(@Market,'fi') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Microsoft maksaa sinulle hyvityksen")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Avaa tämä sähköposti selaimessasi.")
+
+SET @Header = "Sinulle maksetaan hyvitys."
+
+SET @Body1A = TreatAsContent("Havaitsimme äskettäin laskutusongelman tilauksessasi (%%subtype%%). Aiemmin tilaukseen ostamaasi aikaa ei ole lisätty tilillesi oikein, mikä on aiheuttanut virheellisen veloituksen.
+<br><br>
+Koska maksutapoihisi oli tehty muutoksia, emme voineet maksaa hyvitystä automaattisesti. Voit lunastaa hyvityksesi osoitteessa ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " eriteltyjen ohjeiden mukaan.
+<br><br>
+Haluamme tarjota lisäsaldoa Microsoft-tilillesi hyvityksenä tästä häiriöstä. Voit lunastaa tämän koodin osoitteessa "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Saldoa voi käyttää Microsoft Store  kaupassa. Koodi on lunastettava 31.12.2018 mennessä ja saldo on käytettävä vuoden sisällä lunastuksesta.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Huomautus: Jos sinulla on voimassa oleva %%subscriptiontype%% -tilaus, tilaustasi jatketaan normaalisti.")
+
+SET @Signature1 = "Kiitos"
+SET @Signature2 = "Microsoft"
+
+
+
+
+
+ELSEIF @Market == "fr-be" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Vous avez droit à un remboursement de la part de Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Affichez cet e-mail dans votre navigateur.")
+
+SET @Header = "Vous avez droit à un remboursement."
+
+SET @Body1A = TreatAsContent("Nous avons identifié récemment un problème de facturation lié à votre %%subtype%%. La durée d'abonnement que vous avez achetée précédemment n'a pas été appliquée correctement à votre compte, ce qui s'est traduit par des frais incorrects.
+<br><br>
+En raison de changements de vos moyens de paiement, nous ne sommes pas en mesure de fournir automatiquement un remboursement. Pour demander votre remboursement, veuillez consulter la page ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " et suivre les étapes qui y sont indiquées.
+<br><br>
+Pour nous faire pardonner ce désagrément, nous souhaiterions vous offrir un crédit supplémentaire sur votre compte Microsoft. Vous pouvez activer ce code à l'adresse "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Votre crédit peut être utilisé sur le Microsoft Store. Le code doit être activé d'ici le 31/12/2018 et le crédit doit être utilisé dans un délai d'un an après l'activation du code.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Remarque : Si vous être actuellement abonné à %%subscriptiontype%%, votre abonnement restera inchangé.")
+
+SET @Signature1 = "Merci,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+
+ELSEIF @Market == "fr-ca" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Vous avez droit à un remboursement de Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Affichez cet e-mail dans votre navigateur.")
+
+SET @Header = "Vous avez droit à un remboursement."
+
+SET @Body1A = TreatAsContent("Nous avons récemment découvert un problème de facturation concernant votre %%subtype%%. La durée d’abonnement que vous avez achetée précédemment n’a pas été appliquée correctement à votre compte, entraînant des frais erronés.
+<br><br>
+En raison de changements apportés à vos modes de paiement, nous ne sommes pas en mesure d’appliquer automatiquement le remboursement. Pour obtenir votre remboursement, visitez le site ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " et suivez les étapes indiquées.
+<br><br>
+En raison de ces inconvénients, nous souhaitons vous offrir un crédit supplémentaire sur votre compte Microsoft. Vous pouvez réclamer votre code au "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Votre crédit peut être utilisé sur le Magasin Microsoft. Le code doit être réclamé d’ici le 31/12/2018 et le crédit doit être appliqué dans un délai d’un an par la suite.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Remarque : Si vous êtes actuellement abonné à %%subscriptiontype%%, votre abonnement se poursuivra sans changement.")
+
+SET @Signature1 = "Merci,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+
+ELSEIF @Market == "fr-ch" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Vous avez droit à un remboursement de la part de Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Affichez cet e-mail dans votre navigateur.")
+
+SET @Header = "Vous avez droit à un remboursement."
+
+SET @Body1A = TreatAsContent("Nous avons identifié récemment un problème de facturation lié à votre %%subtype%%. La durée d'abonnement que vous avez achetée précédemment n'a pas été appliquée correctement à votre compte, ce qui s'est traduit par des frais incorrects.
+<br><br>
+En raison de changements de vos moyens de paiement, nous ne sommes pas en mesure de fournir automatiquement un remboursement. Pour demander votre remboursement, veuillez consulter la page ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " et suivre les étapes qui y sont indiquées.
+<br><br>
+Pour nous faire pardonner ce désagrément, nous souhaiterions vous offrir un crédit supplémentaire sur votre compte Microsoft. Vous pouvez activer ce code à l'adresse "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Votre crédit peut être utilisé sur le Microsoft Store. Le code doit être activé d'ici le 31/12/2018 et le crédit doit être utilisé dans un délai d'un an après l'activation du code.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Remarque : Si vous être actuellement abonné à %%subscriptiontype%%, votre abonnement restera inchangé.")
+
+SET @Signature1 = "Merci,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF @Market == "fr-fr" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Vous avez droit à un remboursement de la part de Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Affichez cet e-mail dans votre navigateur.")
+
+SET @Header = "Vous avez droit à un remboursement."
+
+SET @Body1A = TreatAsContent("Nous avons identifié récemment un problème de facturation lié à votre %%subtype%%. La durée d'abonnement que vous avez achetée précédemment n'a pas été appliquée correctement à votre compte, ce qui s'est traduit par des frais incorrects.
+<br><br>
+En raison de changements de vos moyens de paiement, nous ne sommes pas en mesure de fournir automatiquement un remboursement. Pour demander votre remboursement, veuillez consulter la page ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " et suivre les étapes qui y sont indiquées.
+<br><br>
+Pour nous faire pardonner ce désagrément, nous souhaiterions vous offrir un crédit supplémentaire sur votre compte Microsoft. Vous pouvez activer ce code à l'adresse "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Votre crédit peut être utilisé sur le Microsoft Store. Le code doit être activé d'ici le 31/12/2018 et le crédit doit être utilisé dans un délai d'un an après l'activation du code.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Remarque : Si vous être actuellement abonné à %%subscriptiontype%%, votre abonnement restera inchangé.")
+
+SET @Signature1 = "Merci,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+
+ELSEIF IndexOf(@Market,'he') THEN
+
+SET @Direction = "RTL"
+
+SET @Subject = TreatAsContent("מגיע לך החזר מ- Microsoft‎")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("הצג דואר זה בדפדפן שלך.")
+
+SET @Header = "מגיע לך החזר.‎"
+
+SET @Body1A = TreatAsContent("גילינו לאחרונה בעיית חיוב במנוי %%subtype%% שלך. זמן מנוי שרכשת בעבר לא הוחל על חשבונך כראוי, ועקב כך נגרם חיוב שגוי.
+<br><br>
+עקב שינויים בשיטות התשלום שלך, אין לנו אפשרות לספק החזר באופן אוטומטי. כדי לקבל את ההחזר, אנא בקר בכתובת ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " ובצע את השלבים המפורטים.
+<br><br>
+עקב אי-הנוחות שנגרמה לך, אנו מעוניינים להוסיף נקודות זכות לחשבון Microsoft שלך. תוכל לממש קוד זה בכתובת "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". תוכל להשתמש בנקודות הזכות ב- Microsoft Store. יש לממש את הקוד עד 31/12/2018 ולהשתמש בנקודות הזכות תוך שנה ממועד המימוש.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("הערה: אם יש לך כעת מנוי של %%subscriptiontype%%, המנוי ימשיך ללא שינוי.")
+
+SET @Signature1 = "תודה,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF IndexOf(@Market,'hu') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Visszatérítés jár Önnek a Microsofttól")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Az e-mail megtekintése böngészőben.")
+
+SET @Header = "Visszatérítés jár Önnek."
+
+SET @Body1A = TreatAsContent("Nemrégiben egy számlázási problémát azonosítottunk a következővel kapcsolatban: %%subtype%%. Az Ön által korábban megvásárolt előfizetési idő nem lett megfelelően érvényesítve a fiókjában, és ez helytelen díjterhelést eredményezett.
+<br><br>
+Az Ön fizetési módjaiban bekövetkezett változások miatt nem tudjuk az összeget automatikusan visszatéríteni Önnek. A visszatérítés kérelmezéséhez kérjük, keresse fel a ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " oldalt, és kövesse az ott található lépéseket.
+<br><br>
+Az okozott kellemetlenség miatt a Microsoft-fiókjához adható további jóváírást ajánlunk fel Önnek. A kód a következő oldalon váltható be: "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". A jóváírt összeg a Microsoft Store-ban használható fel. A kód 2018. december 31-ig váltható be. A jóváírt összeg a beváltás napjától számított egy éven belül használható fel.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Megjegyzés: Amennyiben Ön jelenleg %%subscriptiontype%%-előfizető, az előfizetés változatlanul folytatódni fog.")
+
+SET @Signature1 = "Köszönettel:"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF IndexOf(@Market,'it') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Hai diritto a un rimborso da parte di Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Visualizza questa e-mail nel browser.")
+
+SET @Header = "Hai diritto a un rimborso."
+
+SET @Body1A = TreatAsContent("Di recente abbiamo rilevato un problema di fatturazione in relazione al tuo %%subtype%%. Il periodo di abbonamento che hai acquistato di recente non è stato applicato correttamente al tuo account e ha comportato un addebito non corretto.
+<br><br>
+A causa delle modifiche apportate ai tuoi metodi di pagamento non siamo in grado di fornire automaticamente un rimborso. Per chiedere il rimborso, visita il sito Web all'indirizzo ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " e segui i passaggi indicati.
+<br><br>
+Per scusarci dell'inconveniente, desideriamo offrirti un credito aggiuntivo per il tuo account Microsoft. Puoi riscattare questo codice sul sito Web all'indirizzo "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Il tuo credito può essere speso presso il Microsoft Store. Il codice deve essere riscattato entro il 31/12/2018 e il credito deve essere speso entro un anno dal riscatto.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Nota: se attualmente sei un abbonato di %%subscriptiontype%% il tuo abbonamento rimarrà invariato.")
+
+SET @Signature1 = "Grazie,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF IndexOf(@Market,'ja') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Microsoft から払戻があります。")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("このメールをブラウザーで表示します。")
+
+SET @Header = "払戻があります。"
+
+SET @Body1A = TreatAsContent("Microsoft は、先日お客様の %%subtype%% に関する請求の問題を把握しました。前回ご購入のサブスクリプションで、お客様のアカウントに期間が正しく反映されなかったことにより、誤った請求が発生いたしました。
+<br><br>
+お客様はお支払方法を変更されており、自動で払戻を進めることができません。お手数ですが ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " をご覧いただき、案内に従って払戻をお受け取りください。
+<br><br>
+ご迷惑をおかけしたお詫びとして、お客様の Microsoft アカウントにクレジットを追加させていただきます。コードは "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(" でご使用ください。クレジットは、Microsoft Store でご利用いただくことができます。コードの使用期限は 2018 年 12 月 31 日です。クレジットはコードの使用日から 1 年間有効です。
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("注: 現在、%%subscriptiontype%% のサブスクリプションをご利用の場合、サブスクリプションへの変更はありません。")
+
+SET @Signature1 = "今後とも、どうぞよろしくお願いいたします。"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF IndexOf(@Market,'ko') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Microsoft로부터 환불 대상자로 판별되었습니다.")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("이 메일은 브라우저에서 확인하세요.")
+
+SET @Header = "환불 대상자로 판별되었습니다."
+
+SET @Body1A = TreatAsContent("최근에 귀하의 %%subtype%%에 대한 청구에 문제가 있었던 것으로 확인되었습니다. 이전에 구입하신 구독 시간이 계정에 제대로 적용되지 않아 잘못된 요금이 과금되었습니다.
+<br><br>
+귀하의 결제 수단이 변경되었기 때문에 자동 환불 지급이 불가능합니다. ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " 페이지에서 지침에 따라 환불을 요청하시기 바랍니다.
+<br><br>
+불편을 끼쳐 드린 데 대한 보상으로 Microsoft 계정에 추가로 크레딧을 지급해 드리고자 합니다. "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(" 에서 코드를 교환하면 됩니다. Microsoft Store에서 크레딧을 사용할 수 있습니다. 코드 사용 기한은 2018년 12월 31일까지이며 교환 후 1년 이내에 크레딧을 사용해야 합니다.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("참고: 현재 %%subscriptiontype%% 을(를) 구독 중인 경우 해당 구독에는 아무런 변경 사항도 적용되지 않습니다.")
+
+SET @Signature1 = "감사합니다."
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF IndexOf(@Market,'nb') OR IndexOf(@Market,'no') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Du er berettiget til å motta refusjon fra Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Vis denne e-postmeldingen i nettleseren.")
+
+SET @Header = "Du er berettiget til å motta refusjon."
+
+SET @Body1A = TreatAsContent("Vi oppdaget nylig et faktureringsproblem med %%subtype%%. Abonnementstiden du tidligere har kjøpt, ble ikke riktig brukt på kontoen din, og du ble derfor uriktig belastet.
+<br><br>
+Vi kan ikke refundere beløpet automatisk på grunn av endringer i betalingsmetodene dine. Gå til ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " og følg trinnene der for å motta refusjon.
+<br><br>
+Som kompensasjon vil vi gjerne tilby deg ekstra kreditt på Microsoft-kontoen din. Du kan løse inn denne koden på "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Kreditten kan brukes i Microsoft Store. Koden må løses inn innen 31.12.2018, og kreditten må brukes innen ett år etter innløsning.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Obs! Hvis du abonnerer på %%subscriptiontype%%, fortsetter abonnementet uten endringer.")
+
+SET @Signature1 = "Vennlig hilsen"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "nl-be" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("U hebt recht op een terugbetaling van Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Geef deze e-mail weer in je browser.")
+
+SET @Header = "U hebt recht op een terugbetaling."
+
+SET @Body1A = TreatAsContent("We hebben onlangs een probleem vastgesteld met de facturatie van uw %%subtype%%. De abonnementsperiode die u eerder hebt aangekocht, werd niet correct op uw account toegepast met onjuiste kosten als gevolg.
+<br><br>
+Door wijzigingen in uw betaalmethoden kunnen we niet voor een automatische terugbetaling zorgen. Om uw terugbetaling te vragen, gaat u naar ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " en doorloopt u de stappen.
+<br><br>
+Voor dit ongemak bieden we u graag een extra krediet aan op uw Microsoft-account. U kunt deze code inwisselen op "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". U kunt uw krediet besteden in de Microsoft Store. De code moet voor 31/12/2018 worden ingewisseld en het krediet dient binnen het jaar na inwisseling te worden gebruikt.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Opmerking: als u momenteel een %%subscriptiontype%% abonnee bent, blijft uw abonnement ongewijzigd.")
+
+SET @Signature1 = "Bedankt,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "nl-nl" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("U ontvangt een terugbetaling van Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Geef deze e-mail weer in je browser.")
+
+SET @Header = "U ontvangt een terugbetaling."
+
+SET @Body1A = TreatAsContent("Onlangs ontdekten we een fout in de facturering voor uw %%subtype%%. Eerder door u gekochte abonnementstijd werd incorrect verwerkt op uw account, hetgeen resulteerde in een onjuiste afschrijving.
+<br><br>
+Door wijziging in uw betalingswijze kunnen wij uw tegoed niet automatisch terugstorten. Ga voor het ontvangen van uw tegoed naar ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " en volg de stapsgewijze instructies.
+<br><br>
+Om dit ongemak te verzachten willen wij u een extra tegoed op uw Microsoft-account aanbieden. U kunt deze code inwisselen op "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". U kunt het tegoed besteden in de Microsoft Store. De code moet vóór 31-12-2018 zijn ingewisseld en het tegoed moet binnen één jaar na terugbetaling zijn uitgegeven.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Let op: Als u momenteel %%subscriptiontype%%-abonnee bent, zal dit abonnement ongewijzigd doorlopen.")
+
+SET @Signature1 = "Hartelijk dank,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF IndexOf(@Market,'pl') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Otrzymasz zwrot pieniędzy od Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Wyświetl tę wiadomość e-mail w przeglądarce.")
+
+SET @Header = "Otrzymasz zwrot pieniędzy."
+
+SET @Body1A = TreatAsContent("W ostatnim czasie wykryliśmy problem z rozliczeniem Twojej subskrypcji %%subtype%%. Zakupiony przez Ciebie czas subskrypcji nie został odpowiednio przypisany do Twojego konta, co spowodowało naliczenie nieprawidłowej opłaty.
+<br><br>
+W związku ze zmianą Twojej metody płatności nie możemy automatycznie zwrócić Ci pieniędzy. Aby otrzymać zwrot, odwiedź stronę ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " i postępuj zgodnie z podanymi tam instrukcjami.
+<br><br>
+W związku z zaistniałą niedogodnością chcielibyśmy przekazać Ci dodatkowe środki na konto Microsoft. Możesz je odebrać na stronie "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Otrzymane środki możesz wykorzystać w Microsoft Store. Kod jest ważny do 31 grudnia 2018 r., a środki należy wykorzystać w ciągu roku od ich odebrania przy użyciu kodu.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Uwaga: Jeśli aktualnie korzystasz z subskrypcji %%subscriptiontype%%, to pozostanie ona niezmieniona.")
+
+SET @Signature1 = "Dziękujemy"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "pt-br" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Você tem direito a um reembolso da Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Veja este email no navegador.")
+
+SET @Header = "Você tem direito a um reembolso."
+
+SET @Body1A = TreatAsContent("Recentemente, nós identificamos um problema na cobrança da sua %%subtype%%. O prazo da assinatura que você adquiriu anteriormente não foi aplicado à sua conta de forma correta, o que resultou em uma cobrança indevida.
+<br><br>
+Devido às alterações na sua forma de pagamento, não foi possível oferecer um reembolso automático. Para solicitar seu reembolso, visite ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " e siga as etapas.
+<br><br>
+Lamentamos pelo inconveniente e estamos oferecendo a você um crédito adicional na sua conta da Microsoft. Você pode resgatar esse código em "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Seu crédito poderá ser usado na Microsoft Store. O código deve ser resgatado até 31/12/2018 e o crédito, usado até um ano após o resgate.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Observação: se você for atualmente um assinante do %%subscriptiontype%%, sua assinatura continuará inalterada.")
+
+SET @Signature1 = "Obrigado,"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF IndexOf(@Market,'pt') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Tem a receber um reembolso da Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Veja esta mensagem de e-mail no browser.")
+
+SET @Header = "Tem a receber um reembolso."
+
+SET @Body1A = TreatAsContent("Identificámos recentemente um problema de faturação no seu %%subtype%%. O período de subscrição que adquiriu anteriormente não foi aplicado corretamente à sua conta, resultando numa cobrança indevida.
+<br><br>
+Devido a alterações aos seus métodos de pagamento, não nos é possível efetuar o reembolso automaticamente. Para reclamar o seu reembolso, visite ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " e siga os passos aí indicados.
+<br><br>
+Dado o incómodo, queremos oferecer-lhe um crédito adicional para a sua conta Microsoft. Pode resgatar este código em "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". O seu crédito poderá ser utilizado na Microsoft Store. O código deve ser resgatado até 31/12/2018 e o crédito tem de ser utilizado no período de um ano após o resgate.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Nota: Se é atualmente subscritor do %%subscriptiontype%%, a sua subscrição não sofrerá alterações.")
+
+SET @Signature1 = "Obrigado,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF IndexOf(@Market,'ru') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Вы получите возмещение от Майкрософт")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Просмотреть это сообщение в браузере.")
+
+SET @Header = "Вы получите возмещение."
+
+SET @Body1A = TreatAsContent("Недавно мы выявили проблему, связанную с выставлением счета за %%subtype%%. Приобретенное ранее время подписки не было зачислено на ваш счет и это привело к ошибке при оплате.
+<br><br>
+Поскольку метод оплаты был изменен, мы не сможем вернуть денежные средства автоматически. Чтобы запросить возврат денежных средств, перейдите на страницу ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " и следуйте указаниям.
+<br><br>
+Учитывая неудобства, вызванные этой неисправностью, мы зачислили дополнительные кредитные средства на вашу учетную запись Майкрософт. Чтобы активировать код, перейдите на страницу "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Кредитные средства можно использовать в Microsoft Store. Код необходимо активировать до 31.12.2018, а кредитные средства будут доступны в течение одного года с момента активации.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Примечание. Если вы являетесь подписчиком %%subscriptiontype%%, ваша подписка останется без изменений.")
+
+SET @Signature1 = "С уважением,"
+SET @Signature2 = "Корпорация Майкрософт"
+
+
+
+ELSEIF IndexOf(@Market,'sv') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Du är berättigad till en återbetalning från Microsoft")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Visa det här e-postmeddelandet i din webbläsare.")
+
+SET @Header = "Du är berättigad till en återbetalning."
+
+SET @Body1A = TreatAsContent("Vi upptäckte nyligen ett debiteringsproblem med din %%subtype%%. Prenumerationstiden som du tidigare köpte aktiverades inte korrekt för ditt konto vilket ledde till att du debiterades felaktigt.
+<br><br>
+Vi kunde inte utfärda en återbetalning automatiskt till dig på grund av ändringar i dina betalningsmetoder. Gå till ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " och följ anvisningarna där för att få din återbetalning.
+<br><br>
+Som kompensation vill vi ge dig en ytterligare kredit i ditt Microsoft-konto. Du kan lösa in den här koden på "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Du kan spendera din kredit på Microsoft Store. Koden måste lösas in senast 2018-12-31 och krediten måste spenderas inom ett år efter att du löst in koden.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Obs! Om du för närvarande är en %%subscriptiontype%%-prenumerant fortsätter din prenumeration oförändrat.")
+
+SET @Signature1 = "Tack!"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF IndexOf(@Market,'tr') THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("Microsoft'tan para iadesi alacağınız var")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("Bu e-postayı tarayıcınızda görüntüleyin.")
+
+SET @Header = "Para iadesi alacağınız var."
+
+SET @Body1A = TreatAsContent("Kısa bir süre önce %%subtype%% hesabınızla ilgili bir fatura sorunu tespit ettik. Daha önce satın aldığınız abonelik süresi hesabınıza düzgün uygulanmadığından hatalı bir ücretlendirme gerçekleşti.
+<br><br>
+Ödeme yöntemlerinizdeki değişikliklerden dolayı otomatik olarak para iadesi sağlayamıyoruz. Para iadenizi talep etmek için lütfen ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " adresini ziyaret ederek sayfadaki adımları izleyin.
+<br><br>
+Bu durumdan dolayı Microsoft hesabınıza ek kredi sunmak istiyoruz. Bu kodu "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(". Kredinizi Microsoft Store'da harcayabilirsiniz. Kod 31.12.2018 tarihine kadar kullanılmalı ve krediler kullanım tarihinden itibaren bir yıl içinde harcanmalıdır.
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("Not: Şu anda bir %%subscriptiontype%% abonesiyseniz, aboneliğiniz bu durumdan etkilenmeden devam eder.")
+
+SET @Signature1 = "Teşekkürler,"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF @Market == "zh-cn" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("你应收到 Microsoft 发起的一笔退款")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("在浏览器中查看此电子邮件。")
+
+SET @Header = "你应收到一笔退款。"
+
+SET @Body1A = TreatAsContent("我们最近发现你的 %%subtype%% 存在计费问题。你之前购买的订阅时间未正确对应到你的帐户，造成了错误扣费。
+<br><br>
+由于你的付款方式发生了更改，我们无法自动发起退款。要申请退款，请访问 ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " 并按照上面的步骤进行操作。
+<br><br>
+由于为你带来了不便，我们特向你的 Microsoft 帐户充值了一笔额外的信用额度。你可以在 "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(" 兑换此代码。你可以使用信用额度在 Microsoft Store 消费。代码必须在 2018 年 12 月 31 日前兑换，且信用额度须在兑换后一年内消费完毕。
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("注意：如果你目前是 %%subscriptiontype%% 订阅用户，你的订阅将继续保持不变。")
+
+SET @Signature1 = "感谢你的支持！"
+SET @Signature2 = "Microsoft"
+
+
+
+
+ELSEIF @Market == "zh-hk" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("您有 Microsoft 的退款")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("在瀏覽器中檢視這封電子郵件。")
+
+SET @Header = "您有退款。"
+
+SET @Body1A = TreatAsContent("我們最近發現您的 %%subtype%% 訂閱在帳單方面有問題。您先前購買的訂閱時間未適當套用至您的帳戶，而導致收費有誤。
+<br><br>
+因為您的付款方式已變更，我們無法自動提供退款。如要索取您的退款，請瀏覽 ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " 並遵循該處的步驟。
+<br><br>
+對此所造成的不便，我們希望向您的 Microsoft 帳戶提供額外點數。您可以在 "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(" 兌換此代碼。您的點數可用於 Microsoft Store。代碼必須在 12/31/2018 前兌換，而且點數必須在兌換後的一年內使用。
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("附註：如果您目前是 %%subscriptiontype%% 訂閱者，您的訂閱將保持不變。")
+
+SET @Signature1 = "感謝您，"
+SET @Signature2 = "Microsoft"
+
+
+
+ELSEIF @Market == "zh-tw" THEN
+
+SET @Direction = "LTR"
+
+SET @Subject = TreatAsContent("您有 Microsoft 的退款")
+
+SET @Preheader = TreatAsContent("")
+SET @ViewOnline = TreatAsContent("在瀏覽器中檢視這封電子郵件。")
+
+SET @Header = "您有退款。"
+
+SET @Body1A = TreatAsContent("我們最近發現您的 %%subtype%% 訂閱在帳單方面有問題。您先前購買的訂閱時間未適當套用至您的帳戶，而導致收費有誤。
+<br><br>
+因為您的付款方式已變更，我們無法自動提供退款。若要索取您的退款，請造訪 ")
+SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+SET @Body1C = " 並遵循該處的步驟。
+<br><br>
+對此所造成的不便，我們希望提供額外的點數給您的 Microsoft 帳戶。您可以在 "
+SET @Body1D = "www.microsoft.com/redeem"
+SET @Body1D_Alias = "www.microsoft.com/redeem"
+SET @Body1E = TreatAsContent(" 兌換此代碼。您的點數可用於 Microsoft 商店。代碼必須在 12/31/2018 前兌換，而且點數必須在兌換後的一年內使用。
+<br><br>
+%%GiftCode%%")
+SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+SET @Body2A = TreatAsContent("附註：如果您目前是 %%subscriptiontype%% 訂閱者，您的訂閱將保持不變。")
+
+SET @Signature1 = "感謝您，"
+SET @Signature2 = "Microsoft"
+
+	
+
+ELSE
+
+	SET @Subject = ""
+
+ENDIF
+
+/* Default to en-us */
+IF Length(@Subject) < 2 THEN
+
+	SET @Direction = "LTR"
+
+	SET @Subject = TreatAsContent("You are due a refund from Microsoft")
+
+	SET @Preheader = TreatAsContent("")
+	SET @ViewOnline = TreatAsContent("View this email in your browser.")
+
+	SET @Header = "You are due a refund."
+
+	SET @Body1A = TreatAsContent("We recently identified your Microsoft account is due a refund because of overlapping %%subtype%% subscriptions. This can occur if we billed you for a new subscription that overlapped with one you already had.
+		<br><br>
+		Due to changes in your payment methods we are not able to automatically provide a refund. To claim your refund, please visit ")
+	SET @Body1B = "https://www.microsoft.com/subscriptionrefund"
+	SET @Body1B_Alias = "https://www.microsoft.com/subscriptionrefund"
+	SET @Body1C = " and follow the steps there.
+	<br><br>
+	For this inconvenience we wish to offer you an additional credit to your Microsoft account. You can redeem this code at "
+	SET @Body1D = "www.microsoft.com/redeem"
+	SET @Body1D_Alias = "www.microsoft.com/redeem"
+	SET @Body1E = TreatAsContent(". Your credit can be spent at any online Microsoft store. Code must be redeemed by 12/31/2018 and the credit spent within one year of redemption.
+	<br><br>
+	%%GiftCode%%")
+	SET @urlBody1B = "https://go.microsoft.com/fwlink/?linkid=864628"
+	SET @urlBody1D = "https://go.microsoft.com/fwlink/?linkid=864417"
+
+	SET @Body2A = TreatAsContent("Note: If you are currently a %%subscriptiontype%% subscriber your subscription will continue unchanged.")
+
+	SET @Signature1 = "Thank you, "
+	SET @Signature2 = "Microsoft"
+
+
+ENDIF
+
+]%% -->
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	a {text-decoration:none;}
+	a:hover {text-decoration:underline;}
+	.afooter {color:#0044cc !important;}
+	body {
+		background:#fff;
+		margin:0;
+		padding:0;
+		-ms-text-size-adjust:100%;
+	}
+	.bodywrap{
+		max-width:640px !important;
+		margin:auto;
+		overflow-x:hidden;
+	}
+	table {max-width:640px;}
+	table td {border-collapse:collapse;margin:0;padding:0;}
+	img {border:none;}
+	p {margin-bottom:1em;} /* Yahoo! Mail fix. */
+	@media only screen and (max-width: 480px) {
+		.block{
+			display:block;
+			width:100%;
+			padding: 5px 0px 5px 0px;
+			box-sizing:border-box;
+		}
+		.mobileAdjust {
+			font-size:24px !important;
+			line-height:28px !important;
+		}
+		.mobileBlock {
+			display:block !important;
+			width:100% !important;
+			box-sizing:border-box;
+		}
+		.mobileHidden {
+			display:none !important;
+		}
+		.autoSize {
+			width:100% !important;
+			height:auto !important;
+		}
+		h1.h1Header {
+            font-size:28px !important;
+            line-height:28px !important;
+        }
+	}
+</style>
+</head>
+<body leftmargin="0" topmargin="0">
+
+<!-- %%=ContentAreaByName("My Contents\Transactional\GlobalLanguage")=%% -->
+
+<table cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr>
+		<td align="center" valign="top" width="640" class="bodywrap">
+
+%%[IF @Direction == "RTL" THEN]%%
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr>
+		<td width="640" align="left" valign="middle" style="color:#3d3d3d; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; font-weight:bold; padding:12px 0; direction:rtl;" class="mobileBlock">
+
+<p>
+	<span class="mobileBlock">%%= v(@Preheader) =%%</span>%%[IF NOT EMPTY(@Preheader) THEN]%%<span class="mobileHidden">&nbsp;|&nbsp;</span>%%[ENDIF]%%<span class="mobileBlock"><a style="color:#0044cc; text-decoration:underline;" href="%%view_email_url%%" title="%%= v(@ViewOnline) =%%" alias="Preheader: View this email in your browser.: %%= v(@Market) =%%">%%= v(@ViewOnline) =%%</a></span>
+</p>
+
+		</td>
+	</tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr>
+		 <td width="20" valign="middle" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; font-weight:bold; padding:20px 0;">&nbsp;</td>
+		 <td width="600" valign="middle" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; font-weight:bold; padding:20px 0; direction:rtl;" class="mobileBlock">
+
+%%=ContentAreaByName("my contents\Global\DynamicLogos_Color")=%%
+
+<h1 style="color:#000000; font-family:'Segoe UI Light','Segoe UI',Arial,sans-serif; font-size:38px; font-weight:100; line-height:38px; margin-bottom:12px; padding:0;" class="h1Header">
+    %%= v(@Header) =%%
+</h1>
+
+		 </td>
+		 <td width="20" valign="middle" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; font-weight:bold; padding:20px 0;">&nbsp;</td>
+	</tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr>
+		<td width="20" valign="middle" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:0 0 30px;">&nbsp;</td>
+		<td width="600" align="right" valign="top" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; line-height:16px; padding: 20px 0 30px; direction:rtl;" class="mobileBlock">
+
+<p>
+	%%= v(@Body1A) =%%<a href="%%= redirectTo(@urlBody1B) =%%" title="%%= v(@Body1B) =%%" alias="Body: %%= v(@Body1B_Alias) =%%" style="color:#0072c6; text-decoration:none;">%%= v(@Body1B) =%%</a>%%= v(@Body1C) =%%<a href="%%= redirectTo(@urlBody1D) =%%" title="%%= v(@Body1D) =%%" alias="Body: %%= v(@Body1D_Alias) =%%" style="color:#0072c6; text-decoration:none;">%%= v(@Body1D) =%%</a>%%= v(@Body1E) =%%
+</p>
+<p>
+	%%= v(@Body2A) =%%
+</p>
+<p>
+	<br>
+	%%= v(@Signature1) =%%
+	<br><br>
+	%%= v(@Signature2) =%%
+</p>
+
+
+		</td>
+		<td width="20" valign="middle" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:0 0 30px;">&nbsp;</td>
+	</tr>
+</table>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr>
+		<td width="640" valign="middle" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:20px 0; direction:rtl;">
+			<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+				<tr>
+					<td width="20" valign="middle" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:0;">&nbsp;</td>
+					<td width="460" colspan="2" align="right" valign="bottom" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; line-height:16px; padding:0; direction:rtl;" class="mobileBlock">
+
+						%%=ContentAreaByName("My Contents\Global\FusionFooter")=%%
+
+					</td>
+					<td width="40" valign="middle" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:0;" class="mobileHidden">&nbsp;</td>
+					<td width="100" colspan="2" align="right" valign="bottom" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; line-height:16px; padding:0;" class="mobileBlock">
+						<p>
+							<img src="http://image.email.microsoftonline.com/lib/fe95157074600c7e7c/m/1/33520_Logo_Microsoft_Grey_100x22.png" width="100" height="22" alt="Microsoft" border="0">
+						</p>
+					</td>
+					<td width="20" valign="middle" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:0;">&nbsp;</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+%%[ELSE]%%
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr>
+		<td width="640" align="right" valign="middle" style="color:#3d3d3d; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; font-weight:bold; padding:12px 0;">
+
+<p>
+	<span class="mobileBlock">%%= v(@Preheader) =%%</span>%%[IF NOT EMPTY(@Preheader) THEN]%%<span class="mobileHidden">&nbsp;|&nbsp;</span>%%[ENDIF]%%<span class="mobileBlock"><a style="color:#0044cc; text-decoration:underline;" href="%%view_email_url%%" title="%%= v(@ViewOnline) =%%" alias="Preheader: View this email in your browser.: %%= v(@Market) =%%">%%= v(@ViewOnline) =%%</a></span>
+</p>
+
+		</td>
+	</tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr>
+		 <td width="20" valign="middle" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; font-weight:bold; padding:20px 0;">&nbsp;</td>
+		 <td width="600" valign="middle" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; font-weight:bold; padding:20px 0;">
+
+%%=ContentAreaByName("my contents\Global\DynamicLogos_Color")=%%
+
+<h1 style="color:#000000; font-family:'Segoe UI Light','Segoe UI',Arial,sans-serif; font-size:38px; font-weight:100; line-height:38px; margin-bottom:12px; padding:0;" class="h1Header">
+    %%= v(@Header) =%%
+</h1>
+
+		 </td>
+		 <td width="20" valign="middle" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; font-weight:bold; padding:20px 0;">&nbsp;</td>
+	</tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr>
+		<td width="20" valign="middle" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:0 0 30px;">&nbsp;</td>
+		<td width="600" align="left" valign="top" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; line-height:16px; padding:20px 0 30px;">
+
+<p>
+	%%= v(@Body1A) =%%<a href="%%= redirectTo(@urlBody1B) =%%" title="%%= v(@Body1B) =%%" alias="Body: %%= v(@Body1B_Alias) =%%" style="color:#0072c6; text-decoration:none;">%%= v(@Body1B) =%%</a>%%= v(@Body1C) =%%<a href="%%= redirectTo(@urlBody1D) =%%" title="%%= v(@Body1D) =%%" alias="Body: %%= v(@Body1D_Alias) =%%" style="color:#0072c6; text-decoration:none;">%%= v(@Body1D) =%%</a>%%= v(@Body1E) =%%
+</p>
+<p>
+	%%= v(@Body2A) =%%
+</p>
+<p>
+	<br>
+	%%= v(@Signature1) =%%
+	<br><br>
+	%%= v(@Signature2) =%%
+</p>
+
+		</td>
+		<td width="20" valign="middle" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:0 0 30px;">&nbsp;</td>
+	</tr>
+</table>
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+	<tr>
+		<td width="640" valign="middle" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:20px 0;">
+			<table width="100%" cellpadding="0" cellspacing="0" border="0" align="center">
+				<tr>
+					<td width="20" valign="middle" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:0;">&nbsp;</td>
+					<td width="460" colspan="2" align="left" valign="bottom" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; line-height:16px; padding:0;" class="mobileBlock">
+
+						%%=ContentAreaByName("My Contents\Global\FusionFooter")=%%
+
+					</td>
+					<td width="40" valign="middle" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:0;" class="mobileHidden">&nbsp;</td>
+					<td width="100" align="left" valign="bottom" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; line-height:16px; padding:0;" class="mobileBlock">
+						<p>
+							<img src="http://image.email.microsoftonline.com/lib/fe95157074600c7e7c/m/1/33520_Logo_Microsoft_Grey_100x22.png" width="100" height="22" alt="Microsoft" border="0">
+						</p>
+					</td>
+					<td width="20" valign="middle" bgcolor="#f2f2f2" style="color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; padding:0;">&nbsp;</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+%%[ENDIF]%%
+
+		</td>
+	</tr>
+</table>
+
+<custom name="opencounter" type="tracking">
+</body>
+</html>

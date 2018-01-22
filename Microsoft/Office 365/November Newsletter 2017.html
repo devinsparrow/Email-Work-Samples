@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<!-- %%[
+
+/*
+* Description: November Newsletter 2017
+* Created by: Devin Sparrow
+* Created on: 2017-11-01
+* Updated by: Devin Sparrow
+* Updated on: 2017-11-02, 2017-11-03, 2017-11-07, 2017-11-08, 2017-11-09
+
+*/
+
+SET @Locale = trim(Country)
+SET @WebTrends = Concat("WT.mc_id=azurebg_email_",emailName_)  
+/* DO NOT CHANGE THIS LINE */
+
+
+/* CUSTOM CONTENT */
+
+SET @Subject = "Your Quarterly Office 365 Champions Program Newsletter"
+SET @AutoPreview = "Watch the 2017 Champions Ignite session, get the latest on Office 365, and join our quarterly call."
+
+/* Australia */
+IF @Locale == "Australia" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Belgium */
+ELSEIF @Locale == "BEL" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Canada */
+ELSEIF @Locale == "CA" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " / "
+    SET @FooterC = "Se désabonner"
+    SET @FooterD = " | "
+    SET @FooterE = "Privacy Statement"
+    SET @FooterF = " / "
+    SET @FooterG = "Déclaration de confidentialité"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterE = "https://go.microsoft.com/fwlink/?LinkId=521839"
+    SET @urlFooterG = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Denmark */
+ELSEIF @Locale == "DNK" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Finland */
+ELSEIF @Locale == "FIN" THEN
+    /* FOOTER */
+    SET @FooterA = "Peruuta tilaus"
+    SET @FooterB = " | "
+    SET @FooterC = "Tietosuojalauseke"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* India */
+ELSEIF @Locale == "IND" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Indonesia */
+ELSEIF @Locale == "IDN" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Ireland */
+ELSEIF @Locale == "IRL" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Italy */
+ELSEIF @Locale == "ITA" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Malaysia */
+ELSEIF @Locale == "MYS" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Netherlands */
+ELSEIF @Locale == "NLD" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* New Zealand */
+ELSEIF @Locale == "NZL" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Norway */
+ELSEIF @Locale == "NOR" THEN
+    /* FOOTER */
+    SET @FooterA = "Stopp abonnement"
+    SET @FooterB = " | "
+    SET @FooterC = "Personvernerklæring"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Philippines */
+ELSEIF @Locale == "PHL" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Portugal */
+ELSEIF @Locale == "PRT" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Singapore */
+ELSEIF @Locale == "SGP" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* South Africa */
+ELSEIF @Locale == "ZAF" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Spain */
+ELSEIF @Locale == "ESP" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Sri Lanka */
+ELSEIF @Locale == "LKA" THEN
+    /* FOOTER */
+    SET @FooterA = "දායකත්වය ඉවත් කරගන්න"
+    SET @FooterB = " | "
+    SET @FooterC = "රහස්‍යතා ප්‍රකාශය"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Sweden */
+ELSEIF @Locale == "SWE" THEN
+    /* FOOTER */
+    SET @FooterA = "Avbryt prenumeration"
+    SET @FooterB = " | "
+    SET @FooterC = "Sekretesspolicy"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Switzerland */
+ELSEIF @Locale == "CHE" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Thailand */
+ELSEIF @Locale == "THA" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* United Kingdom */
+ELSEIF @Locale == "UK" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+/* Vietnam */
+ELSEIF @Locale == "VNM" THEN
+    /* FOOTER */
+    SET @FooterA = "Hủy đăng ký"
+    SET @FooterB = " | "
+    SET @FooterC = "Điều khoản về Quyền riêng tư"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+
+/* DEFAULT EN-US */
+ELSEIF @Locale == "US" OR @Locale == "en" THEN
+    /* FOOTER */
+    SET @FooterA = "Unsubscribe"
+    SET @FooterB = " | "
+    SET @FooterC = "Privacy Statement"
+    SET @urlFooterA = TreatAsContent("%%Unsub_Center_External_URL%%")
+    SET @urlFooterC = "https://go.microsoft.com/fwlink/?LinkId=521839"
+
+ENDIF
+
+]%% -->
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=640, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>%%= v(@Subject) =%%</title>
+    <!--[if gte mso 9]>
+	<xml>
+	  <o:OfficeDocumentSettings>
+		<o:AllowPNG/>
+		<o:PixelsPerInch>96</o:PixelsPerInch>
+	 </o:OfficeDocumentSettings>
+	</xml>
+    <![endif]-->
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        table td {
+            border-collapse: collapse;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .autopreview {
+            display: none !important;
+        }
+        
+        @media only screen and (max-width:640px) {
+            .mobileHide {
+                display: none;
+                line-height: 0;
+                mso-hide: all;
+                max-height: 0;
+                max-width: 0;
+                width: 0;
+            }
+        }
+        
+        @media only screen and (max-width:480px) {
+            .wrapper {
+                width: 320px!important;
+            }
+            /* Stack */
+            .photo {
+                display: block !important;
+                width: 100% !important;
+                height: auto !important;
+            }
+            .block {
+                width: 100% !important;
+                display: block !important;
+                box-sizing: border-box;
+            }
+            .blockLast {
+                width: 100% !important;
+                display: block !important;
+                padding-bottom: 20px !important;
+            }
+            .blockBanner {
+                width: 100% !important;
+                height: auto !important;
+                display: block !important;
+                padding: 20px 0 !important;
+                font-size: 15px !important;
+                line-height: 22px !important;
+            }
+            .w4 {
+                width: 4px !important;
+            }
+            .addressText {
+                font-size: 10px !important;
+            }
+            .mobileHidden {
+                display: none !important;
+            }
+            .mobileBody {
+                width: 288px !important;
+            }
+            .mobileBodyPadding {
+                padding: 10px 0px 10px 0px !important;
+                width: 288px !important;
+            }
+            .mobileBulletPadding {
+                padding: 10px 0px 10px 0px !important;
+            }
+            .mobileNoPadding {
+                padding: 5px 0 !important;
+            }
+            .mobileGutter {
+                width: 15px !important;
+            }
+            .mobileCTA {
+                width: 258px !important;
+            }
+            .mobileCTABanner {
+                width: 258px !important;
+                text-align: left !important;
+                padding-bottom: 20px !important;
+            }
+            .mobileHeight {
+                height: auto !important;
+            }
+            .mobileExpand {
+                width: 255px !important;
+                height: 120px !important;
+            }
+            .mobileExpand2 {
+                width: 255px !important;
+                height: 134px !important;
+            }
+            .mobileOnly {
+                display: block !important;
+                margin: 0 !important;
+                padding: 20px 0 0 0 !important;
+                overflow: visible !important;
+                width: auto !important;
+                max-height: inherit !important;
+                height: 1px !important;
+                position: relative !important;
+                top: 0px !important;
+                border-bottom: 1px solid #e6e6e6;
+            }
+            .QLtitleWidthLeft {
+                width: 201px !important;
+            }
+            .QLtitleWidthRight {
+                width: 168px !important;
+            }
+            .QLBlock {
+                width: 100% !important;
+                display: block !important;
+                padding-top: 20px !important;
+            }
+            .removeBorder {
+                height: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body style="font-family:'Segoe UI',Arial,sans-serif; font-size:12px; color:#4d4d4d; background-color:#ffffff; line-height:20px; -webkit-text-size-adjust:none;">
+
+    <table width="640" style="width:640px;" align="center" cellspacing="0" cellpadding="0" class="wrapper">
+        <tr>
+            <td>
+                <table width="640" style="width:640px;" align="center" cellspacing="0" cellpadding="0" class="wrapper">
+                    <tr>
+                        <!-- PREHEADER-->
+                        <td width="640" align="center" style="background-color:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:10px; font-weight:bold; padding-top: 10px;">
+                            Having trouble viewing this email | <a style="color:#4d4d4d;" target="_blank" title="View as a webpage" href="%%view_email_url%%" alias="Preheader:View as a webpage">View as a webpage</a>.
+                        </td>
+                        <!-- /PREHEADER -->
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <!-- TOP BANNER -->
+                            <!-- MICROSOFT LOGO -->
+                            <table width="640" style="width:640px;" cellpadding="0" cellspacing="0" border="0" class="wrapper">
+                                <tr>
+                                    <td class="mobileGutter" width="35" style="width:35px; background:#ffffff; line-height:1px;">&nbsp;</td>
+                                    <td width="285" valign="middle" style="width: 285px; background:#ffffff; line-height:1px; padding:20px 0;">
+                                        <img src="http://image.email2.office.com/lib/fe8913727063037a76/m/1/EN-BASICE-Logo-MSFTLogo.png" height="21" border="0" alt="Microsoft" />
+                                    </td>
+                                    <td class="mobileHidden" width="285" align="right" valign="middle" style="width:285px; background:#ffffff; font-family:'Segoe UI', Arial,sans-serif;"><img src="http://image.email.office.com/lib/fe9815707264017b71/m/1/Office365-Logo.png" height="20" border="0" align="middle" alt="Office 365" />
+                                    </td>
+                                    <td class="mobileGutter" width="35" style="width:35px; background:#ffffff; line-height:1px;">&nbsp;</td>
+                                </tr>
+                            </table>
+                            <!-- /TOP BANNER -->
+
+                            <!-- HEADER Image-->
+                            <table class="mobileHidden" style="width:640px;" border="0" cellspacing="0" cellpadding="0" width="640">
+                                <tr>
+                                    <td class="mobileHidden" style="background-color:#e6e6e6;" align="left" bgcolor="#e6e6e6">
+                                        <img style="height:auto; display:block;" src="http://image.email.office.com/lib/fe9815707264017b71/m/1/Office-Champion-Nov2017-Hero_v2.jpg" border="0" alt="Office 365" width="640" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- /HEADER Image -->
+
+                        </td>
+                    </tr>
+                </table>
+                <table width="640" style="width:640px;" align="center" cellspacing="0" cellpadding="0" class="wrapper">
+                    <tr>
+                        <td>
+                            <table border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; height: 20px;" height="20">&nbsp;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- NEWSLETTER HEADLINE-->
+                            <table border="0" cellspacing="0" cellpadding="0" width="640" style="width:640px;" class="wrapper">
+                                <tbody>
+                                    <tr>
+                                        <td class="mobileGutter" style="width:35px; background:#ffffff; line-height:1px;" width="35">&nbsp;</td>
+                                        <td style="background:#ffffff;">
+                                            <table border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td style="background:#ffffff; padding:0; color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:28px; line-height:34px;">
+                                                        Office 365 Champions Program
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="background:#ffffff; padding:0; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; line-height:20px;">
+                                                        Quarterly Newsletter | Nov 2017
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td class="mobileGutter" width="35" style="width:35px; background:#ffffff; line-height:1px;">&nbsp;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- /NEWSLETTER HEADLINE -->
+
+                            <table border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; height: 20px;" height="20">&nbsp;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <!-- MAIN BODY -->
+                            <table border="0" cellspacing="0" cellpadding="0" width="640" style="width:640px;" class="wrapper">
+                                <tbody>
+                                    <tr>
+                                        <td class="mobileGutter" style="width:35px; background:#ffffff; line-height:1px;" width="35">&nbsp;</td>
+                                        <td style="background:#ffffff;">
+
+                                            <!-- BODY 1 -->
+                                            <table border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td style="background:#ffffff; color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:17px; line-height:24px;">
+                                                        Welcome to the community!
+                                                    </td>
+                                                </tr>    
+                                                <tr>
+                                                    <td style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; line-height:20px;">
+                                                        Office 365 Champions are professionals like you who are passionate about Office 365, excited to help peers, and ready to lead. In return for the great qualities you bring to the table, we want to keep you in the loop with the latest updates and insider views from Office&nbsp;365.
+                                                        <br /><br />
+                                                        This new community will connect you with other like-minded users, enable you to share and learn from each other, give you exclusive access to Microsoft product experts, and arm you with tools and resources that you can use to be a Champion for your peers at&nbsp;work.
+                                                        <br /><br />
+                                                        Thank you,
+                                                        <br />
+                                                        Office 365 Champions Program Team
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <!-- /BODY 1 -->
+
+                                            <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="border-bottom: 1px solid #cccccc; font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; height: 20px;" height="20">&nbsp;</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; height: 20px;" height="20">&nbsp;</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <!-- BODY 2 -->
+                                            <table border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td style="background:#ffffff; color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:17px; line-height:24px;">
+                                                        Office 365 Champions Session at Ignite 2017
+                                                    </td>
+                                                </tr>    
+                                                <tr>
+                                                    <td style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; line-height:20px;">
+                                                        Were you able to attend the annual <a style="text-decoration: none; color: #D83B01;" href="https://www.microsoft.com/en-us/ignite/" title="Microsoft Ignite" target="_blank">Microsoft Ignite</a> conference in Orlando this September? Ignite offers a chance for members of the tech community to network, meet innovators and product experts, access valuable sessions and insights from industry leaders, and&nbsp;more.
+                                                        <br /><br />
+                                                        In case you missed it, check out the <a style="text-decoration: none; color: #D83B01;" href="https://myignite.microsoft.com/videos/53535" title="Build Your Office 365 Champions session" target="_blank">Build Your Office 365 Champions session</a>. You'll find out how a Business Architect at Mott MacDonald and a Digital Workplace Engagement Lead at Nestle built and grew successful Champion programs to help their organizations get the most out of Office&nbsp;365.
+                                                        <br /><br />
+                                                        You can explore hundreds more Ignite sessions <a style="text-decoration: none; color: #D83B01;" href="https://myignite.microsoft.com/videos" title="here" target="_blank">here</a>.
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <!-- /BODY 2 -->
+
+                                            <table border="0" cellspacing="0" cellpadding="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; height: 20px;" height="20">&nbsp;</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <!-- BODY 3 -->
+                                            <table border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td style="background:#ffffff; color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:17px; line-height:24px;">
+                                                        The latest from Office 365
+                                                    </td>
+                                                </tr>    
+                                                <tr>
+                                                    <td style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; line-height:20px;">
+                                                        As a Champion, you get the latest Office 365 news straight from the source. Read on for recent announcements, and be sure to check out more in our <a style="text-decoration: none; color: #D83B01;" href="https://www.linkedin.com/groups/13533623/profile" title="LinkedIn Group" target="_blank">LinkedIn Group</a>.
+                                                        <br /><br />
+                                                        <span style="color:#000000; font-weight: bold;">Expand your collaboration with guest access in Microsoft Teams</span>
+                                                        <br />
+                                                        Microsoft Teams is the hub for teamwork in Office 365, helping you collaborate on documents and stay connected via chat, calls, and meetings. Recently, Teams rolled out guest access to all Office 365 commercial and education customers. That means that you can now expand your collaboration by using Teams with people from outside your&nbsp;organization.
+                                                        <br />
+                                                        <a style="text-decoration: none; color: #D83B01;" href="https://support.office.com/en-us/article/Video-What-is-Microsoft-Teams-b98d533f-118e-4bae-bf44-3df2470c2b12?ui=en-US&rs=en-US&ad=US" title="Learn more about Teams" target="_blank">Learn more about Teams</a>
+                                                        <br /><br />
+                                                        <span style="color:#000000; font-weight: bold;">Quarterly Champions Call</span>
+                                                        <br />
+                                                        Each quarter, we host a call to share our latest news. Don't miss the next call:
+                                                        <br /><br /> 
+                                                        <table border="0" cellspacing="0" cellpadding="0">
+                                                            <tr>
+                                                                <td width="15" style="width: 15px; line-height: 1px;">&nbsp;</td>
+                                                                <td style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; line-height:20px;">
+                                                                    <strong>Tips From the Pros: Teams</strong>
+                                                                    <br />
+                                                                    November 16, 2017 @ 11am PST
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <br />
+                                                        Join us as we help you understand and navigate Teams like a pro. We'll also provide plenty of time for an “ask us anything” Q&A and peer-to-peer sharing about your experiences as Champions in your&nbsp;organizations.
+
+                                                        <!-- CTA -->
+                                                        <table border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; height: 20px;" height="20">&nbsp;</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="mobileCTA" style="width: 350px; padding-top: 0px;" width="350" align="left">
+                                                                        <table style="background: #D83B01;" border="0" cellspacing="0" cellpadding="0" bgcolor="#D83B01">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td style="padding: 3px 0; background: #D83B01; line-height: 1px; mso-line-height-rule: exactly;" colspan="5" width="1" bgcolor="#D83B01">&nbsp;</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="background: #D83B01;" width="15" bgcolor="#D83B01">&nbsp;</td>
+                                                                                    <td style="background: #D83B01; color: #ffffff; font-family: 'Segoe UI',Arial,sans-serif; font-size: 17px; line-height: 22px; padding: 0px 0;" align="left" valign="middle" bgcolor="#D83B01"><a style="color: #ffffff; text-decoration: none;" title="Add the call to your calendar now!" href="http://image.email.office.com/lib/fe9815707264017b71/m/1/Champions+Skype+Call_Nov.ics" target="_blank">Add the call to your calendar now!</a></td>
+                                                                                    <td style="background: #D83B01;" width="15" bgcolor="#D83B01">&nbsp;</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td style="padding: 3px 0; background: #D83B01; line-height: 1px; mso-line-height-rule: exactly;" colspan="5" width="1" bgcolor="#D83B01">&nbsp;</td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <table border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; height: 20px;" height="20">&nbsp;</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- /CTA -->
+
+                                                        Join by Phone
+                                                        <br />
+                                                        +13238494874 (Dial-in Number)
+                                                        <br />
+                                                        Conference ID: 83969795
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <!-- /BODY 3 -->
+
+                                            <table border="0" cellspacing="0" cellpadding="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; height: 20px;" height="20">&nbsp;</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <!-- BODY 4 -->
+                                            <table border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td style="background:#ffffff; color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:17px; line-height:24px;">
+                                                        Continue to Connect
+                                                    </td>
+                                                </tr>    
+                                                <tr>
+                                                    <td style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; line-height:20px;">
+                                                        Not a member of our <a style="text-decoration: none; color: #D83B01;" href="https://www.linkedin.com/groups/13533623/profile" title="LinkedIn community" target="_blank">LinkedIn community</a>? Join today to be the first to hear what's new with Office 365 and to share with peers from other&nbsp;organizations.
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <!-- /BODY 4 -->
+
+                                            <table border="0" cellspacing="0" cellpadding="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; height: 20px;" height="20">&nbsp;</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <!-- BODY 5 -->
+                                            <table border="0" cellspacing="0" cellpadding="0">
+                                                <tr>
+                                                    <td style="background:#ffffff; color:#000000; font-family:'Segoe UI',Arial,sans-serif; font-size:17px; line-height:24px;">
+                                                        Refer a Champion
+                                                    </td>
+                                                </tr>    
+                                                <tr>
+                                                    <td style="background:#ffffff; color:#4d4d4d; font-family:'Segoe UI',Arial,sans-serif; font-size:13px; line-height:20px;">
+                                                        If you know of other potential Champions who might be interested in joining the community, please invite them to <a style="text-decoration: none; color: #D83B01;" href="https://fasttrack.microsoft.com/office/champion" title="register" target="_blank">register</a> for the&nbsp;program.
+                                                        <br /><br />
+                                                        Keep up the good work leading, innovating, sharing ideas, and most of all, being a&nbsp;Champion!
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <!-- /BODY 5 -->
+
+                                        </td>
+                                        <td class="mobileGutter" width="35" style="width:35px; background:#ffffff; line-height:1px;">&nbsp;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- /MAIN BODY -->
+                            <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width: 100%;" bgcolor="#ffffff">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-size: 1px; line-height: 1px; mso-line-height-rule: exactly; border-bottom: 1px solid #e6e6e6;" height="40">&nbsp;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- FOOTER -->
+                <table border="0" cellspacing="0" cellpadding="0" width="640" style="width:640px; background:#f0f0f0;" class="wrapper">
+                    <tbody>
+                        <tr>
+                            <td width="35" style="width:35px; background:#f0f0f0; line-height:1px; border-top:1px solid #4d4d4d;">&nbsp;</td>
+                            <td width="570" valign="top" style="width:570px; background:#f0f0f0; color:#505050; font-family:'Segoe UI',Arial,sans-serif; font-size:12px; line-height:15px; padding:20px 0; border-top:1px solid #4d4d4d;">
+
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width:550px;" align="center">
+                                    <tr>
+                                        <td style="font-family: Segoe UI, Arial, Helvetica, sans-serif; font-size: 11px; color:#4d4d4d;" align="center">
+
+                                            %%[IF @Locale == "CA" THEN]%%
+                                              <a href="%%=RedirectTo(@urlFooterA)=%%" title="%%=v(@FooterA)=%%" alias="Footer: %%=v(@Locale)=%% - %%=v(@FooterA)=%%" style="color:#4d4d4d; text-decoration:underline;">%%=v(@FooterA)=%%</a>%%=v(@FooterB)=%%<a href="%%=RedirectTo(@urlFooterC)=%%" title="%%=v(@FooterC)=%%" alias="Footer: %%=v(@Locale)=%% - %%=v(@FooterC)=%%" style="color:#4d4d4d; text-decoration:underline;">%%=v(@FooterC)=%%</a>%%=v(@FooterD)=%%<a href="%%=RedirectTo(@urlFooterE)=%%" title="%%=v(@FooterE)=%%" alias="Footer: %%=v(@Locale)=%% - %%=v(@FooterE)=%%" style="color:#4d4d4d; text-decoration:underline;">%%=v(@FooterE)=%%</a>%%=v(@FooterF)=%%<a href="%%=RedirectTo(@urlFooterG)=%%" title="%%=v(@FooterG)=%%" alias="Footer: %%=v(@Locale)=%% - %%=v(@FooterG)=%%" style="color:#4d4d4d; text-decoration:underline;">%%=v(@FooterG)=%%</a>
+
+                                            %%[ELSE]%%
+
+                                            %%[IF NOT EMPTY(@FooterA) THEN]%%
+                                            <a href="%%=RedirectTo(@urlFooterA)=%%" title="%%=v(@FooterA)=%%" alias="Footer: %%=v(@Locale)=%% - %%=v(@FooterA)=%%" style="color:#4d4d4d; text-decoration:underline;">%%=v(@FooterA)=%%</a>%%=v(@FooterB)=%%<a href="%%=RedirectTo(@urlFooterC)=%%" title="%%=v(@FooterC)=%%" alias="Footer: %%=v(@Locale)=%% - %%=v(@FooterC)=%%" style="color:#4d4d4d; text-decoration:underline;">%%=v(@FooterC)=%%</a>
+                                            %%[ENDIF]%%
+
+                                            %%[ENDIF]%%
+
+                                            <br>
+
+                                            %%Member_Busname%% <br>
+                                            %%Member_Addr%%<br>
+                                            %%Member_City%%, %%Member_State%% %%Member_PostalCode%%
+
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" style="max-width:550px;" align="left">
+                                    <tr>
+                                        <td width="65" style="width:65px; padding-top: 20px;">
+                                            <a href="https://www.microsoft.com/en-us/" title="Microsoft" alias="Footer: Microsoft Logo"><img src="https://info.microsoft.com/rs/157-GQE-382/images/co-en-template-microsoft-logo_double.png" border="0" alt="Microsoft" height="20" style="height: 20px"></a>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                            <td width="35" style="width:35px; background:#f0f0f0; line-height:1px; border-top:1px solid #4d4d4d;">&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            <!-- /FOOTER -->
+        </td>
+    </tr>
+</table>
+
+</body>
+
+</html>
+<custom name="opencounter" type="tracking">
